@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="BOOK">
+        <xs:complexType>
+
+            <xs:sequence>
+                <xs:element name="NAME_EN" type="xs:string"/>
+                <xs:element name="NAME_JP" type="xs:string"/>
+                <xs:element name="NAME_R" type="xs:string"/>
+                <xs:element name="NAME_ALT" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="DATE_RELEASED" type="xs:date"/>
+                <xs:element name="DATA_ISBN" type="xs:string"/>
+                <xs:element name="DATA_PAGES" type="xs:integer"/>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                                <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="DATA_AGE" type="xs:integer"/>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                                <xs:minInclusive value="0"/>
+                                <xs:pattern value="\d*[02468]"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="DATA_ANTHOLOGY" type="xs:boolean"/>
+                <xs:element name="DATA_LANGUAGE" type="xs:integer"/>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                                <xs:minInclusive value="1"/>
+                                <xs:maxInclusive value="10"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="DATA_COPYSHI" type="xs:boolean"/>
+                <xs:element name="DATA_MAGAZINE" type="xs:boolean"/>
+                <xs:element name="DATA_INFO" type="xs:string"/>
+
+                <xs:element name="LINKS">
+                    <xs:complexType>
+
+                        <xs:sequence>
+                            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                <xs:element name="typeA" type="generic" />
+                                <xs:element name="typeB" type="generic" />
+                                <xs:element name="typeC" type="generic" />
+                            </xs:choice>
+                        </xs:sequence>
+
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+
+            <xs:attribute name="ID" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="B\d+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="VER" type="xs:integer" use="required"/>
+
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

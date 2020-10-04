@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="../item.xsd" />
+
+    <xs:element name="ITEM">
+        <xs:complexType>
+            <xs:complexContent>
+
+                <xs:extension base="item">
+                    <xs:sequence>
+                        <xs:element name="NAME_ALT" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="DATA_SEX" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:minInclusive value="0"/>
+                                    <xs:maxInclusive value="4"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="DATE_AGE" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:pattern value="\d{,10}"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+
+                <xs:restriction base="item">
+                    <xs:attribute name="ID" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:pattern value="H\d+"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="TYPE" type="xs:string" use="required" fixed="character"/>
+                </xs:restriction>
+
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetnamespace="mugimugi">
+
+
+    <xs:simpleType name="positiveInteger">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="share">
+        <xs:restriction base="positiveInteger">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="5"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="item" abstract="true">
+
+        <xs:sequence>
+            <xs:element name="NAME_EN" type="xs:string"/>
+            <xs:element name="NAME_JP" type="xs:string"/>
+            <xs:element name="NAME_R" type="xs:string"/>
+            <xs:element name="OBJECTS" type="xs:integer"/>
+        </xs:sequence>
+
+        <xs:attribute name="ID" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[A-Z]\d+"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="TYPE" type="xs:string" use="required"/>
+        <xs:attribute name="VER" type="positiveInteger" use="required"/>
+        <xs:attribute name="FRQ" type="share" use="required"/>
+
+    </xs:complexType>
+
+</xs:schema>

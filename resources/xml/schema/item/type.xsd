@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="../item.xsd" />
+
+    <xs:element name="ITEM">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:restriction>
+                    <xs:attribute name="ID" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:pattern value="T\d+"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="TYPE" type="xs:string" use="required" fixed="type"/>
+                    <xs:attribute name="PARENT" type="positiveInteger" use="required"/>
+                </xs:restriction>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

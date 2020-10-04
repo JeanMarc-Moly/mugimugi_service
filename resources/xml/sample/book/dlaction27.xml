@@ -1,0 +1,112 @@
+<BOOK ID="B65715" VER="6">
+    <NAME_EN>D.L. action 27</NAME_EN>
+    <NAME_JP>D.L. action 27</NAME_JP>
+    <NAME_R>ディーエルアクション27</NAME_R>
+    <DATE_RELEASED>2004-10-03</DATE_RELEASED>
+    <DATA_ISBN></DATA_ISBN>
+    <DATA_PAGES>28</DATA_PAGES>
+    <DATA_AGE>1</DATA_AGE>
+    <DATA_ANTHOLOGY>0</DATA_ANTHOLOGY>
+    <DATA_LANGUAGE>3</DATA_LANGUAGE>
+    <DATA_COPYSHI>0</DATA_COPYSHI>
+    <DATA_MAGAZINE>0</DATA_MAGAZINE>
+    <DATA_INFO></DATA_INFO>
+    <LINKS>
+        <ITEM ID="G227" VER="1" TYPE="genre" FRQ="0">
+            <NAME_EN>For men</NAME_EN>
+            <NAME_JP>男性向け</NAME_JP>
+            <NAME_R></NAME_R>
+            <OBJECTS>346049</OBJECTS>
+        </ITEM>
+        <ITEM ID="N107" VER="2" TYPE="convention" FRQ="0">
+            <NAME_EN>Comic Revolution 36</NAME_EN>
+            <NAME_JP>コミックレヴォリューション 36</NAME_JP>
+            <NAME_R>コミックレヴォリューション36</NAME_R>
+            <OBJECTS>696</OBJECTS>
+            <DATE_START>2004-10-03</DATE_START>
+            <DATE_END>2004-10-03</DATE_END>
+        </ITEM>
+        <ITEM ID="L3" VER="2" TYPE="publisher" FRQ="0">
+            <NAME_EN>No Publisher</NAME_EN>
+            <NAME_JP>出版社なし</NAME_JP>
+            <NAME_R></NAME_R>
+            <OBJECTS>1492741</OBJECTS>
+        </ITEM>
+        <ITEM ID="O25" VER="1" TYPE="collections" FRQ="0">
+            <NAME_EN>D.L. action</NAME_EN>
+            <NAME_JP>D.L. action</NAME_JP>
+            <NAME_R></NAME_R>
+            <OBJECTS>109</OBJECTS>
+        </ITEM>
+        <ITEM ID="I2" VER="2" TYPE="imprint" FRQ="0">
+            <NAME_EN>No Imprint</NAME_EN>
+            <NAME_JP>レーベルなし</NAME_JP>
+            <NAME_R></NAME_R>
+            <OBJECTS>848115</OBJECTS>
+        </ITEM>
+        <ITEM ID="T1" VER="1" TYPE="type" FRQ="0">
+            <NAME_EN>Doujinshi</NAME_EN>
+            <NAME_JP>同人誌</NAME_JP>
+            <NAME_R></NAME_R>
+            <OBJECTS>1329929</OBJECTS>
+        </ITEM>
+        <ITEM ID="C180" VER="17" TYPE="circle" PARENT="0" FRQ="2">
+            <NAME_EN>Digital Lover</NAME_EN>
+            <NAME_JP>Digital Lover</NAME_JP>
+            <NAME_R>デジタルラバー</NAME_R>
+            <OBJECTS>421</OBJECTS>
+        </ITEM>
+        <ITEM ID="A924" VER="15" TYPE="author" PARENT="0" FRQ="2">
+            <NAME_EN>Nakajima Yuka</NAME_EN>
+            <NAME_JP>なかじまゆか</NAME_JP>
+            <NAME_R>ナカジマユカ</NAME_R>
+            <OBJECTS>485</OBJECTS>
+            <NAME_ALT>かなじまゆか</NAME_ALT>
+            <NAME_ALT>Digital Lover</NAME_ALT>
+        </ITEM>
+        <ITEM ID="P16" VER="29" TYPE="parody" FRQ="0">
+            <NAME_EN>Fate/stay night</NAME_EN>
+            <NAME_JP>Fate/stay night</NAME_JP>
+            <NAME_R>フェイトステイナイト</NAME_R>
+            <OBJECTS>5268</OBJECTS>
+        </ITEM>
+        <ITEM ID="H3465" VER="13" TYPE="character" FRQ="0">
+            <NAME_EN>Caster</NAME_EN>
+            <NAME_JP>キャスター</NAME_JP>
+            <NAME_R>キャスター</NAME_R>
+            <OBJECTS>125</OBJECTS>
+            <DATA_SEX>2</DATA_SEX>
+            <DATA_AGE></DATA_AGE>
+        </ITEM>
+        <ITEM ID="K48" VER="2" TYPE="contents" FRQ="0">
+            <NAME_EN>Domination (Femdom)</NAME_EN>
+            <NAME_JP>女性支配・女王様・ドミナ</NAME_JP>
+            <NAME_R></NAME_R>
+            <OBJECTS>7083</OBJECTS>
+        </ITEM>
+        <ITEM ID="K39" VER="1" TYPE="contents" FRQ="0">
+            <NAME_EN>Elf</NAME_EN>
+            <NAME_JP>エルフ</NAME_JP>
+            <NAME_R></NAME_R>
+            <OBJECTS>2803</OBJECTS>
+        </ITEM>
+        <ITEM ID="K66" VER="4" TYPE="contents" FRQ="0">
+            <NAME_EN>Group Sex</NAME_EN>
+            <NAME_JP>グループセックス</NAME_JP>
+            <NAME_R></NAME_R>
+            <OBJECTS>39263</OBJECTS>
+            <NAME_ALT>乱交</NAME_ALT>
+        </ITEM>
+        <ITEM ID="H211" VER="19" TYPE="character" FRQ="0">
+            <NAME_EN>Tōsaka Rin</NAME_EN>
+            <NAME_JP>遠坂凛</NAME_JP>
+            <NAME_R>トオサカリン</NAME_R>
+            <OBJECTS>979</OBJECTS>
+            <NAME_ALT>Tosaka Rin</NAME_ALT>
+            <NAME_ALT>Tousaka Rin</NAME_ALT>
+            <NAME_ALT>Tohsaka Rin</NAME_ALT>
+            <DATA_SEX>2</DATA_SEX>
+            <DATA_AGE></DATA_AGE>
+        </ITEM>
+    </LINKS>
+</BOOK>
