@@ -9,4 +9,4 @@ class SynchronousClient(Client):
 
     @classmethod
     def _query(cls, params: dict):
-        return cls._parse(get(cls.API, params=params, timeout=None).text)
+        return cls._parse(get(cls.API, params=params, timeout=None))

@@ -10,6 +10,4 @@ class AsynchronousClient(Client):
     @classmethod
     async def _query(cls, params: dict):
         async with AsyncClient() as client:
-            return cls._parse(
-                (await client.get(cls.API, params=params, timeout=None)).text
-            )
+            return cls._parse(await client.get(cls.API, params=params, timeout=None))
