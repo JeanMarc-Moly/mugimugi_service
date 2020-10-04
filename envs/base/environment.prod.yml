@@ -13,3 +13,4 @@ dependencies:
   - pip:
       - git+https://github.com/QratorLabs/fastenum.git
       - xml-dataclasses
+      - xsdata
