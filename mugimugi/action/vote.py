@@ -12,11 +12,14 @@ class Parameter(metaclass=FastEnum):
 
 class Vote(AbstractAction):
     IDS_SEPARATOR = ","
+    MAX_QUERY = 25
 
     def __init__(self, ids: Iterable[tuple[int, Union[str, ItemType]]], score: str):
         self.ids = ids = {(id_, ItemType[type_]) for id_, type_ in ids}
         if not ids:
             raise Exception("Require at least one id")
+        if (max := self.MAX_QUERY) < len(ids):
+            raise Exception(f"Can not query more than {max}")
         self.score = Score[score]
 
     @staticmethod
