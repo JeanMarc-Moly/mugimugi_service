@@ -82,7 +82,7 @@ class SearchObject(AbstractPaginatedAction):
         y = YesNo.YES
         n = YesNo.NO
 
-        self.title = None if imprint is None else str(title)
+        self.title = None if title is None else str(title)
         self.imprint = None if imprint is None else str(imprint)
         self.publisher = None if publisher is None else str(publisher)
         self.submitter = None if submitter is None else str(submitter)
