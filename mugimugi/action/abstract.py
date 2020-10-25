@@ -14,5 +14,5 @@ class AbstractAction:
         ...
 
     @property
-    def params(self):
+    def params(self) -> dict[str, str]:
         return {Parameter.ACTION.value: self.get_action().value}

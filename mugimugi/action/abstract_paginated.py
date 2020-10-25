@@ -1,4 +1,3 @@
-from abc import abstractstaticmethod
 from fast_enum import FastEnum
 
 from .abstract import AbstractAction
@@ -19,8 +18,7 @@ class AbstractPaginatedAction(AbstractAction):
         self.page = page
 
     @property
-    def params(self):
+    def params(self) -> dict[str, str]:
         params = super().params
         params[Parameter.PAGE.value] = self.page
-        return params 
-        
+        return params

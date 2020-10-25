@@ -1,4 +1,4 @@
-from typing import Union, Iterable
+from typing import Tuple, Union, Iterable
 from fast_enum import FastEnum
 
 from ..enum import Action, Score, ItemType
@@ -14,13 +14,13 @@ class Vote(AbstractAction):
     IDS_SEPARATOR = ","
     MAX_QUERY = 25
 
-    def __init__(self, ids: Iterable[tuple[int, Union[str, ItemType]]], score: str):
-        self.ids = ids = {(id_, ItemType[type_]) for id_, type_ in ids}
+    def __init__(self, ids: Iterable[Tuple[ItemType, int]], score: Score):
+        self.ids = ids = set(ids)
         if not ids:
             raise Exception("Require at least one id")
         if (max := self.MAX_QUERY) < len(ids):
             raise Exception(f"Can not query more than {max}")
-        self.score = Score[score]
+        self.score = score
 
     @staticmethod
     def get_action() -> Action:

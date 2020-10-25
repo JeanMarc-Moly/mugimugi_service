@@ -1,7 +1,7 @@
 from typing import Iterable
+from datetime import date
 
 from fast_enum import FastEnum
-from pendulum import parse
 
 from ..enum import Action, ItemType, Match, ObjectType, SortCriterion, SortOrder, YesNo
 from .abstract import AbstractAction
@@ -107,8 +107,8 @@ class SearchObject(AbstractAction):
         self.parodies = None if parodies is None else set(parodies)
         self.characters = None if characters is None else set(characters)
 
-        self.date_to = None if date_to is None else parse(date_to)
-        self.date_from = None if date_from is None else parse(date_from)
+        self.date_to = None if date_to is None else date_to
+        self.date_from = None if date_from is None else date_from
 
         self.match = None if match is None else Match[match]
         self.sort_order = None if sort_order is None else SortOrder[sort_order]
@@ -118,7 +118,7 @@ class SearchObject(AbstractAction):
         )
 
     @property
-    def params(self):
+    def params(self) -> dict[str, str]:
         params = super().params
         p = Parameter
 
@@ -183,7 +183,7 @@ class SearchObject(AbstractAction):
             content += s.join(f"{t}{a}{c}" for c in characters)
 
         if (contents := self.contents) :
-            t = i.CONTENTS.value
+            t = i.CONTENT.value
             content += s.join(f"{t}{a}{c}" for c in contents)
 
         if (genres := self.genres) :
@@ -194,7 +194,7 @@ class SearchObject(AbstractAction):
             content += f"{i.CONVENTION.value}{a}{convention}"
 
         if (collection := self.collection) :
-            content += f"{i.COLLECTIONS.value}{a}{collection}"
+            content += f"{i.COLLECTION.value}{a}{collection}"
 
         if (publisher := self.publisher) :
             content += f"{i.PUBLISHER.value}{a}{publisher}"

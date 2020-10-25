@@ -10,7 +10,7 @@ class AsynchronousPaginatedClient(AsynchronousClient, PaginatedClient):
         min = self.MIN_PER_PAGE
         max = self.MAX_PER_PAGE
 
-        params = {**self.params, **kwargs}
+        params = self.params | kwargs
         params[self.PAGE] = p = 1
 
         while min < len(xml := await self._query(params)) <= max:

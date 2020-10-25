@@ -1,10 +1,13 @@
 from abc import abstractmethod
-from http import HTTPStatus
-from httpx import Response
-from lxml.etree import fromstring, XMLSyntaxError
+from typing import ClassVar
+from urllib.parse import urljoin
 
+from httpx import Response, StatusCode
+from lxml.etree import XMLSyntaxError, fromstring
+
+from ..configuration import API, HOST_NAME
+from ..action.abstract_paginated import Parameter
 from .enum import Error
-from ..configuration import API
 
 
 class Client:
@@ -12,7 +15,6 @@ class Client:
 
     # lxml do not like unicode declaration.
     DECLARATION = """<?xml version="1.0" encoding="UTF-8"?>\n"""
-    DECLARATION_LENGTH = len(DECLARATION)
 
     @abstractmethod
     def query(self, **kwargs):
@@ -20,13 +22,10 @@ class Client:
 
     @classmethod
     def _parse(cls, r: Response):
-        if (status := r.status_code) != HTTPStatus.OK:
+        if (status := r.status_code) != StatusCode.OK:
             raise Exception(f"Invalid status: {status}")
 
-        xml = r.text
-        if xml.startswith(cls.DECLARATION):
-            xml = xml[cls.DECLARATION_LENGTH :]
-
+        xml = r.text.removeprefix(cls.DECLARATION)
         try:
             xml = fromstring(xml)
         except XMLSyntaxError:

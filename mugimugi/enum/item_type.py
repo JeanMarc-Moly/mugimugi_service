@@ -1,3 +1,4 @@
+from mugimugi.bo.links import Item
 from fast_enum import FastEnum
 
 
@@ -8,9 +9,9 @@ class ItemType(metaclass=FastEnum):
     GENRE = "G"
     CHARACTER = "H"
     IMPRINT = "I"
-    CONTENTS = "K"
+    CONTENT = "K"
     PUBLISHER = "L"
     CONVENTION = "N"
-    COLLECTIONS = "O"
+    COLLECTION = "O"
     PARODY = "P"
     TYPE = "T"
