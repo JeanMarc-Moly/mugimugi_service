@@ -25,7 +25,6 @@ class Book(AbstractService[BookRoot], Getter[BookRoot]):
         is_copy_book: Optional[YesNo] = None,
         is_free: Optional[YesNo] = None,
         is_censored: Optional[YesNo] = None,
-        match: Optional[Match] = None,
         object_type: Optional[ObjectType] = None,
         date_from: Optional[date] = None,
         date_to: Optional[date] = None,
@@ -47,7 +46,7 @@ class Book(AbstractService[BookRoot], Getter[BookRoot]):
     ) -> Iterator[Entity]:
         with suppress(StopIteration):
             parse = self.CONSTRUCTOR.parse
-            pages = self.search_pages(title, is_adult_only, is_anthology, is_copy_book, is_free, is_censored, match, object_type, date_from, date_to, circles, authors, parodies, characters, contents, genres, convention, collection, publisher, imprint, contributor, submitter, sort_criterion, sort_order)
+            pages = self.search_pages(title, is_adult_only, is_anthology, is_copy_book, is_free, is_censored, object_type, date_from, date_to, circles, authors, parodies, characters, contents, genres, convention, collection, publisher, imprint, contributor, submitter, sort_criterion, sort_order)
             page = None
             while page := pages.send(page):
                 page = parse(await page)
@@ -65,7 +64,6 @@ class Book(AbstractService[BookRoot], Getter[BookRoot]):
         is_copy_book: Optional[YesNo] = None,
         is_free: Optional[YesNo] = None,
         is_censored: Optional[YesNo] = None,
-        match: Optional[Match] = None,
         object_type: Optional[ObjectType] = None,
         date_from: Optional[date] = None,
         date_to: Optional[date] = None,
@@ -87,7 +85,7 @@ class Book(AbstractService[BookRoot], Getter[BookRoot]):
     ) -> Iterator[Entity]:
         with suppress(StopIteration):
             parse = self.CONSTRUCTOR.parse
-            pages = self.search_pages(title, is_adult_only, is_anthology, is_copy_book, is_free, is_censored, match, object_type, date_from, date_to, circles, authors, parodies, characters, contents, genres, convention, collection, publisher, imprint, contributor, submitter, sort_criterion, sort_order)
+            pages = self.search_pages(title, is_adult_only, is_anthology, is_copy_book, is_free, is_censored, object_type, date_from, date_to, circles, authors, parodies, characters, contents, genres, convention, collection, publisher, imprint, contributor, submitter, sort_criterion, sort_order)
             page = None
             while page := pages.send(page):
                 page = parse(run(page))
@@ -104,7 +102,6 @@ class Book(AbstractService[BookRoot], Getter[BookRoot]):
         is_copy_book: Optional[YesNo] = None,
         is_free: Optional[YesNo] = None,
         is_censored: Optional[YesNo] = None,
-        match: Optional[Match] = None,
         object_type: Optional[ObjectType] = None,
         date_from: Optional[date] = None,
         date_to: Optional[date] = None,
@@ -131,7 +128,6 @@ class Book(AbstractService[BookRoot], Getter[BookRoot]):
                 is_copy_book=is_copy_book,
                 is_free=is_free,
                 is_censored=is_censored,
-                match=match,
                 object_type=object_type,
                 date_from=date_from,
                 date_to=date_to,

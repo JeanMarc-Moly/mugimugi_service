@@ -1,10 +1,9 @@
 from dataclasses import dataclass
 from datetime import date
+from enum import Enum
 from typing import ClassVar, Iterable, Iterator, Optional, Union
 
-from enum import Enum
-
-from ..enum import Action, ElementPrefix, Match, ObjectType, SortOrder, YesNo
+from ..enum import Action, ElementPrefix, ObjectType, SortOrder, YesNo
 from .abstract_paginated import AbstractPaginatedAction
 
 
@@ -29,7 +28,7 @@ class SearchObject(AbstractPaginatedAction):
 
         #   Q=s&
         TITLE = "sn"  # str
-        MATCH_TYPE = "match"  # match
+        # MATCH_TYPE = "match"  # match  # Seems to not work on API
         TYPE = "flist"  # object
         RELEASE_DATE_FROM = "date"  # str YYYY-MM-DD
         RELEASE_DATE_TO = "date2"  # str YYYY-MM-DD
@@ -68,7 +67,6 @@ class SearchObject(AbstractPaginatedAction):
     is_copy_book: Optional[YesNo] = None
     is_free: Optional[YesNo] = None
     is_censored: Optional[YesNo] = None
-    match: Optional[Match] = None
     object_type: Optional[ObjectType] = None
     date_from: Optional[date] = None
     date_to: Optional[date] = None
@@ -100,9 +98,6 @@ class SearchObject(AbstractPaginatedAction):
 
         if submitter := self.submitter:
             yield p.SUBMITTER.value, submitter
-
-        if match := self.match:
-            yield p.MATCH_TYPE.value, match.value
 
         if is_adult_only := self.is_adult_only:
             yield p.IS_ADULT_ONLY.value, is_adult_only.value
