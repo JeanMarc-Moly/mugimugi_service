@@ -1,12 +1,12 @@
 from typing import ClassVar, Type
 
-from ..action import SearchItem
-from ..bo.item.imprint import Item as Entity
-from ..enum import ItemType
+from ..entity.item.imprint import ImprintRoot
+from ..enum import ElementPrefix
 from .abstract_item import Item
+from .abstract import ItemType
 
 
-class Imprint(Item[Entity]):
-    ID_TYPE: ClassVar[ItemType] = ItemType.IMPRINT
-    SEARCH_TYPE: ClassVar[SearchItem.Type] = SearchItem.Type.IMPRINT
-    CONSTRUCTOR: ClassVar[Type] = Entity
+class Imprint(Item[ImprintRoot]):
+    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.IMPRINT
+    SEARCH_TYPE: ClassVar[ItemType] = ItemType.IMPRINT
+    CONSTRUCTOR: ClassVar[Type] = ImprintRoot

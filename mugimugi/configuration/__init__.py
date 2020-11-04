@@ -1,12 +1,8 @@
-from os import getenv
-from urllib.parse import urljoin
-from dotenv import load_dotenv
-
-load_dotenv()
-
-HOST_NAME = "https://www.doujinshi.org/"
-API_KEY = getenv("MUGIMUGI_API_KEY")
-API_PATH = "api/"
-
 # 404 if no final "/"
-API = urljoin(urljoin(HOST_NAME, API_PATH), API_KEY) + "/"
+API_PATH = "https://www.doujinshi.org/api/{key}/"
+
+# Contrary to doc, returns up to 50 elements, not 25 (+1 for user).
+RESPONSE_MAX_COUNT = 50
+REQUEST_GET_ID_MAX_COUNT = 100
+REQUEST_EDIT_LIST_MAX_COUNT = 25
+REQUEST_VOTE_MAX_COUNT = 25

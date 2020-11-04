@@ -2,15 +2,15 @@ from datetime import date
 from typing import AsyncIterator, ClassVar, Optional, Type
 
 from ..action import SearchItem
-from ..bo.item.convention import Item as Entity
-from ..enum import ItemType, SortOrder
-from .abstract_item import Item, parse_to_object
+from ..entity.item.convention import ConventionRoot
+from ..enum import ElementPrefix, SortOrder, ItemType
+from .abstract_item import Item
 
 
-class Convention(Item[Entity]):
-    ID_TYPE: ClassVar[ItemType] = ItemType.CONVENTION
-    SEARCH_TYPE: ClassVar[SearchItem.Type] = SearchItem.Type.CONVENTION
-    CONSTRUCTOR: ClassVar[Type] = Entity
+class Convention(Item[ConventionRoot]):
+    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.CONVENTION
+    SEARCH_TYPE: ClassVar[ItemType] = ItemType.CONVENTION
+    CONSTRUCTOR: ClassVar[Type] = ConventionRoot
 
     async def search(
         self,
@@ -21,11 +21,11 @@ class Convention(Item[Entity]):
         sort_criterion: Optional[SearchItem.SortCriterion] = None,
         sort_order: Optional[SortOrder] = None,
         limit: Optional[int] = None,
-    ) -> AsyncIterator[Entity]:
-        async for item in self.api.fetch_all_elements(
+    ) -> AsyncIterator[ConventionRoot]:
+        async for item in self.fetch_all_elements(
             SearchItem(
-                title,
                 self.SEARCH_TYPE,
+                title,
                 date_=date_,
                 contributor=contributor,
                 sort_criterion=sort_criterion,
@@ -33,4 +33,4 @@ class Convention(Item[Entity]):
             ),
             limit=limit,
         ):
-            yield parse_to_object(item, self.CONSTRUCTOR)
+            yield item

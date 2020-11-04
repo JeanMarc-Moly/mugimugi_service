@@ -1,12 +1,12 @@
 from typing import ClassVar, Type
 
-from ..action import SearchItem
-from ..bo.item.collections import Item as Entity
-from ..enum import ItemType
+from ..entity.item.collection import CollectionRoot
+from ..enum import ElementPrefix
 from .abstract_item import Item
+from .abstract import ItemType
 
 
-class Collection(Item[Entity]):
-    ID_TYPE: ClassVar[ItemType] = ItemType.COLLECTION
-    SEARCH_TYPE: ClassVar[SearchItem.Type] = SearchItem.Type.COLLECTION
-    CONSTRUCTOR: ClassVar[Type] = Entity
+class Collection(Item[CollectionRoot]):
+    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.COLLECTION
+    SEARCH_TYPE: ClassVar[ItemType] = ItemType.COLLECTION
+    CONSTRUCTOR: ClassVar[Type] = CollectionRoot

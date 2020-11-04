@@ -1,12 +1,12 @@
 from typing import ClassVar, Type
 
-from ..action import SearchItem
-from ..bo.item.circle import Item as Entity
-from ..enum import ItemType
+from ..entity.item.circle import CircleRoot
+from ..enum import ElementPrefix
 from .abstract_item import Item
+from .abstract import ItemType
 
 
-class Circle(Item[Entity]):
-    ID_TYPE: ClassVar[ItemType] = ItemType.CIRCLE
-    SEARCH_TYPE: ClassVar[SearchItem.Type] = SearchItem.Type.CIRCLE
-    CONSTRUCTOR: ClassVar[Type] = Entity
+class Circle(Item[CircleRoot]):
+    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.CIRCLE
+    SEARCH_TYPE: ClassVar[ItemType] = ItemType.CIRCLE
+    CONSTRUCTOR: ClassVar[Type] = CircleRoot

@@ -1,12 +1,12 @@
 from typing import ClassVar, Type
 
-from ..action import SearchItem
-from ..bo.item.publisher import Item as Entity
-from ..enum import ItemType
+from ..entity.item.publisher import PublisherRoot
+from ..enum import ElementPrefix
 from .abstract_item import Item
+from .abstract import ItemType
 
 
-class Publisher(Item[Entity]):
-    ID_TYPE: ClassVar[ItemType] = ItemType.PUBLISHER
-    SEARCH_TYPE: ClassVar[SearchItem.Type] = SearchItem.Type.PUBLISHER
-    CONSTRUCTOR: ClassVar[Type] = Entity
+class Publisher(Item[PublisherRoot]):
+    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.PUBLISHER
+    SEARCH_TYPE: ClassVar[ItemType] = ItemType.PUBLISHER
+    CONSTRUCTOR: ClassVar[Type] = PublisherRoot

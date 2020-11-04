@@ -1,20 +1,12 @@
-from typing import ClassVar, Optional
+from typing import Optional
 
 from .client import Client
-from .configuration import API_KEY
 from .service import *
 
 
 class MugiMugi:
-    HOST_NAME: ClassVar[str] = "https://www.doujinshi.org/"
-    API_PATH: ClassVar[str] = "api/"
-
-    # lxml do not like unicode declaration.
-    DECLARATION: ClassVar[str] = """<?xml version="1.0" encoding="UTF-8"?>\n"""
-    DECLARATION_LENGTH: ClassVar[int] = len(DECLARATION)
-
     _author: Optional[Author] = None
-    # _book: Optional[Book] = None
+    _book: Optional[Book] = None
     _character: Optional[Character] = None
     _circle: Optional[Circle] = None
     _collection: Optional[Collection] = None
@@ -27,57 +19,58 @@ class MugiMugi:
     _parody: Optional[Parody] = None
     _publisher: Optional[Publisher] = None
     # _type: Optional[Type] = None
+    _user: Optional[User] = None
 
-    def __init__(self, key: str = API_KEY) -> None:
+    def __init__(self, key: str) -> None:
         self.api_client = Client(key)
 
     @property
     def author(self) -> Author:
-        if (author := self._author) is None:
-            self._author = author = Author(self.api_client)
-        return author
+        if (author_ := self._author) is None:
+            self._author = author_ = Author(self.api_client)
+        return author_
 
-    # @property
-    # def book(self) -> Book:
-    #     if(book := self._book) is None:
-    #         self._book = book = Book(self.api_client)
-    #     return book
+    @property
+    def book(self) -> Book:
+        if(book := self._book) is None:
+            self._book = book = Book(self.api_client)
+        return book
 
     @property
     def character(self) -> Character:
-        if(character := self._character) is None:
-            self._character = character = Character(self.api_client)
-        return character
+        if(character_ := self._character) is None:
+            self._character = character_ = Character(self.api_client)
+        return character_
 
     @property
     def circle(self) -> Circle:
-        if(circle := self._circle) is None:
-            self._circle = circle = Circle(self.api_client)
-        return circle
+        if(circle_ := self._circle) is None:
+            self._circle = circle_ = Circle(self.api_client)
+        return circle_
 
     @property
     def collection(self) -> Collection:
-        if(collection := self._collection) is None:
-            self._collection = collection = Collection(self.api_client)
-        return collection
+        if(collection_ := self._collection) is None:
+            self._collection = collection_ = Collection(self.api_client)
+        return collection_
 
     @property
     def content(self) -> Content:
-        if(content := self._content) is None:
-            self._content = content = Content(self.api_client)
-        return content
+        if(content_ := self._content) is None:
+            self._content = content_ = Content(self.api_client)
+        return content_
 
     @property
     def convention(self) -> Convention:
-        if(convention := self._convention) is None:
-            self._convention = convention = Convention(self.api_client)
-        return convention
+        if(convention_ := self._convention) is None:
+            self._convention = convention_ = Convention(self.api_client)
+        return convention_
 
     @property
     def genre(self) -> Genre:
-        if(genre := self._genre) is None:
-            self._genre = genre = Genre(self.api_client)
-        return genre
+        if(genre_ := self._genre) is None:
+            self._genre = genre_ = Genre(self.api_client)
+        return genre_
 
     # @property
     # def image(self) -> Image:
@@ -87,9 +80,9 @@ class MugiMugi:
 
     @property
     def imprint(self) -> Imprint:
-        if(imprint := self._imprint) is None:
-            self._imprint = imprint = Imprint(self.api_client)
-        return imprint
+        if(imprint_ := self._imprint) is None:
+            self._imprint = imprint_ = Imprint(self.api_client)
+        return imprint_
 
     # @property
     # def list(self) -> List:
@@ -99,18 +92,24 @@ class MugiMugi:
 
     @property
     def parody(self) -> Parody:
-        if(parody := self._parody) is None:
-            self._parody = parody = Parody(self.api_client)
-        return parody
+        if(parody_ := self._parody) is None:
+            self._parody = parody_ = Parody(self.api_client)
+        return parody_
 
     @property
     def publisher(self) -> Publisher:
-        if(publisher := self._publisher) is None:
-            self._publisher = publisher = Publisher(self.api_client)
-        return publisher
+        if(publisher_ := self._publisher) is None:
+            self._publisher = publisher_ = Publisher(self.api_client)
+        return publisher_
 
     # @property
     # def type(self) -> Type:
-    #     if(type := self._type) is None:
-    #         self._type = type = Type(self.api_client)
-    #     return type
+    #     if(type_ := self._type) is None:
+    #         self._type = type_ = Type(self.api_client)
+    #     return type_
+
+    @property
+    def user(self) -> User:
+        if(user_ := self._user) is None:
+            self._user = user_ = User(self.api_client)
+        return user_
