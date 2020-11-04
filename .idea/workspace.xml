@@ -1,7 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6900647f-3a93-4ecc-bfc9-86ff84d8d19e" name="Default Changelist" comment="" />
+    <list default="true" id="6900647f-3a93-4ecc-bfc9-86ff84d8d19e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/mugimugi/service/abstract_element.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/query.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/envs/base/environment.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/envs/base/environment.dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/envs/base/environment.prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/envs/base/environment.prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/abstract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/abstract_paginated.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/abstract_paginated.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/abstract_user_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/abstract_user_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/add_book_to_user_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/add_book_to_user_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/get_item_by_id.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/get_item_by_id.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/remove_book_from_user_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/remove_book_from_user_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/search_image.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/search_image.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/search_item.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/search_item.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/search_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/search_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/action/vote.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/action/vote.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/author.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/character.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/circle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/collections.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/contents.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/convention.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/genre.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/imprint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/parody.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/publisher.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/item/type.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/links.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/bo/list_mod.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/client/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/client/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/client/enum/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/client/enum/error.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/client/enum/item.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/configuration/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/configuration/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/action.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/action.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/boolean.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/boolean.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/gender.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/gender.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/item_type.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/item_type.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/language.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/language.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/match.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/object_type.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/object_type.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/score.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/score.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/share.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/share.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/sort_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/sort_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/enum/yes_no.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/enum/yes_no.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/abstract_item.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/abstract_item.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/author.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/author.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/character.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/character.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/circle.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/circle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/collection.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/collection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/content.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/content.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/convention.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/convention.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/genre.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/genre.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/imprint.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/imprint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/parody.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/parody.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/service/publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/mugimugi/service/publisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/util/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mugimugi/util/xml.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/get_item.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/get_item.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/search_item.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/search_item.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,7 +80,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ZzGda83HsnK6iJaHhyqOH1IIcJ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -20,10 +91,13 @@
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.apps/miniconda/bin/conda" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -39,10 +113,29 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="4063" y="470" width="1665" height="799" key="IDE.errors.dialog" timestamp="1585834758018">
-      <screen x="1920" y="0" width="5120" height="1440" />
+    <state x="3464" y="414" width="732" height="644" key="#Inspections" timestamp="1603801584950">
+      <screen x="0" y="25" width="5120" height="1415" />
     </state>
-    <state x="4063" y="470" width="1665" height="799" key="IDE.errors.dialog/1920.0.5120.1440/0.828.1920.1080@1920.0.5120.1440" timestamp="1585834758018" />
+    <state x="3464" y="414" width="732" height="644" key="#Inspections/0.25.5120.1415/5120.841.1920.1080@0.25.5120.1415" timestamp="1603801584950" />
+    <state x="3580" y="590" width="500" height="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1603799991858">
+      <screen x="0" y="25" width="5120" height="1415" />
+    </state>
+    <state x="3580" y="590" width="500" height="291" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.5120.1415/5120.841.1920.1080@0.25.5120.1415" timestamp="1603799991858" />
+    <state x="3617" y="480" width="422" height="525" key="FileChooserDialogImpl" timestamp="1603799760878">
+      <screen x="0" y="25" width="5120" height="1415" />
+    </state>
+    <state x="3617" y="480" width="422" height="525" key="FileChooserDialogImpl/0.25.5120.1415/5120.841.1920.1080@0.25.5120.1415" timestamp="1603799760878" />
+    <state x="3331" y="367" width="1007" height="737" key="SettingsEditor" timestamp="1603820619790">
+      <screen x="0" y="25" width="5120" height="1415" />
+    </state>
+    <state x="3331" y="367" width="1007" height="737" key="SettingsEditor/0.25.5120.1415/5120.841.1920.1080@0.25.5120.1415" timestamp="1603820619790" />
+    <state x="3503" y="347" width="672" height="678" key="search.everywhere.popup" timestamp="1603799272439">
+      <screen x="0" y="25" width="5120" height="1415" />
+    </state>
+    <state x="3503" y="347" width="672" height="678" key="search.everywhere.popup/0.25.5120.1415/5120.841.1920.1080@0.25.5120.1415" timestamp="1603799272439" />
   </component>
 </project>

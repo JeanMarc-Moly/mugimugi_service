@@ -12,5 +12,7 @@
         ".vscode": true,
         "**/__pycache__": true
     },
-    "python.linting.enabled": false
+    "python.linting.enabled": false,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
 }
