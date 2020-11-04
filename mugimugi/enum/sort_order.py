@@ -1,8 +1,6 @@
-from __future__ import annotations
-
-from fast_enum import FastEnum
+from enum import Enum
 
 
-class SortOrder(metaclass=FastEnum):
+class SortOrder(Enum):
     ASCENDING = "ASC"
     DESCENDING = "DESC"

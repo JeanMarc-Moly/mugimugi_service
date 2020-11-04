@@ -1,17 +1,14 @@
-from mugimugi.bo.links import Item
-from fast_enum import FastEnum
+from enum import Enum
 
 
-class ItemType(metaclass=FastEnum):
-    AUTHOR = "A"
-    BOOK = "B"
-    CIRCLE = "C"
-    GENRE = "G"
-    CHARACTER = "H"
-    IMPRINT = "I"
-    CONTENT = "K"
-    PUBLISHER = "L"
-    CONVENTION = "N"
-    COLLECTION = "O"
-    PARODY = "P"
-    TYPE = "T"
+class ItemType(Enum):
+    CIRCLE = "circle"
+    AUTHOR = "author"
+    PARODY = "parody"
+    CHARACTER = "character"
+    CONTENT = "contents"
+    GENRE = "genre"
+    CONVENTION = "convention"
+    COLLECTION = "collections"
+    PUBLISHER = "publisher"
+    IMPRINT = "imprint"

@@ -1,7 +1,7 @@
-from fast_enum import FastEnum
+from enum import IntEnum
 
 
-class Share(metaclass=FastEnum):
+class Share(IntEnum):
     NOT_SET = 0
     VERY_FEW = 1
     SOME = 2

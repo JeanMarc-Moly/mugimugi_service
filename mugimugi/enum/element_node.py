@@ -1,7 +1,11 @@
-from fast_enum.fastenum import FastEnum
+from enum import Enum
 
 
-class ItemType(metaclass=FastEnum):
+class ElementNode(Enum):
+    LIST = "LIST"
+    ERROR = "ERROR"
+    ITEM = "ITEM"
+
     AUTHOR = "AUTHOR"
     BOOK = "BOOK"
     CIRCLE = "CIRCLE"
@@ -11,7 +15,7 @@ class ItemType(metaclass=FastEnum):
     CONTENT = "CONTENT"
     PUBLISHER = "PUBLISHER"
     CONVENTION = "CONVENTION"
-    COLLECTIONS = "COLLECTIONS"
+    COLLECTION = "COLLECTIONS"
     PARODY = "PARODY"
     USER = "USER"
     TYPE = "TYPE"

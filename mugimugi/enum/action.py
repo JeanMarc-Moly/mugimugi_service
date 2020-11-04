@@ -1,7 +1,8 @@
-from fast_enum import FastEnum
+from enum import Enum
 
 
-class Action(metaclass=FastEnum):
+# noinspection SpellCheckingInspection
+class Action(Enum):
     ADD_BOOK_TO_USER_LIST = "adduserlist"
     REMOVE_BOOK_FROM_USER_LIST = "deluserlist"
     GET_ITEMS_BY_ID = "getID"
