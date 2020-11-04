@@ -1,33 +1,43 @@
-from typing import Iterable
+from __future__ import annotations
 
-from fast_enum import FastEnum
+from typing import ClassVar, Iterable, Iterator, TypeVar, Union
 
-from ..enum import ItemType
+from enum import Enum
+
+from dataclasses import dataclass
+
+from ..enum import ElementNode
+from ..configuration import REQUEST_EDIT_LIST_MAX_COUNT
 from .abstract import AbstractAction
 
 
-class Parameter(metaclass=FastEnum):
+class Parameter(Enum):
     ID = "ID"
 
 
+T = TypeVar("T", bound="AbstractUserListAction")
+
+
+@dataclass
 class AbstractUserListAction(AbstractAction):
-    CONTENT_SEPARATOR = ","
-    # Beyond this count, books are ignoerd.
-    MAX_COUNT_OF_BOOK = 25
-    BOOK_ID_PREFIX = ItemType.BOOK.value
+    CONTENT_SEPARATOR: ClassVar[str] = ","
+    BOOK_ID_PREFIX: ClassVar[str] = ElementNode.BOOK.value
+    # Beyond this count, books are ignored.
+    MAX_COUNT_OF_BOOK = REQUEST_EDIT_LIST_MAX_COUNT
+
+    books: set[int]
 
     def __init__(self, books: Iterable[int]):
         self.books = set(books)
 
-    @property
-    def params(self):
+    def items(self) -> Iterator[tuple[str, Union[str, int]]]:
+        yield from super().items()
+
         p = self.BOOK_ID_PREFIX
-        params = super().params
-        params[Parameter.ID.value] = self.CONTENT_SEPARATOR.join(
+        yield Parameter.ID.value, self.CONTENT_SEPARATOR.join(
             p + str(b) for b in self.books
         )
-        return params
 
     @classmethod
-    def get_from_typed_id(cls, books: Iterable[str]):
-        return cls(int(b[1:] for b in books))
+    def get_from_typed_id(cls: T, books: Iterable[str]) -> T:
+        return cls.__init__(int(b[1:]) for b in books)

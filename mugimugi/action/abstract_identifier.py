@@ -1,9 +1,8 @@
-from dataclasses import InitVar, dataclass
+from dataclasses import dataclass, InitVar
+from typing import ClassVar, Iterator, Tuple, Union, Iterable
 from enum import Enum
-from typing import ClassVar, Iterable, Iterator, Tuple, Union
 
-from ..configuration import REQUEST_GET_ID_MAX_COUNT
-from ..enum import Action, ElementPrefix
+from ..enum import ElementPrefix
 from .abstract import AbstractAction
 
 
@@ -12,10 +11,8 @@ class Parameter(Enum):
 
 
 @dataclass
-class GetItemById(AbstractAction):
-    # TODO: instead of splitting ids, check on each result what is missing, would be a little faster on non-concurrent
-    ACTION: ClassVar[Action] = Action.GET_ITEMS_BY_ID
-    MAX_QUERY: ClassVar[int] = REQUEST_GET_ID_MAX_COUNT
+class AbstractActionOnIdentifier(AbstractAction):
+    MAX_QUERY: ClassVar[int]
     IDS_SEPARATOR: ClassVar[str] = ","
 
     ids: InitVar[list[Tuple[ElementPrefix, int]]]

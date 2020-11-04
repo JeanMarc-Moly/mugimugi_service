@@ -1,36 +1,48 @@
-from typing import Tuple, Union, Iterable
-from fast_enum import FastEnum
+from dataclasses import InitVar, dataclass
+from enum import Enum
+from typing import ClassVar, Iterable, Iterator, Union
 
-from ..enum import Action, Score, ItemType
+from ..configuration import REQUEST_VOTE_MAX_COUNT
+from ..enum import Action, ElementPrefix, Score
 from .abstract import AbstractAction
+from .abstract_identifier import Parameter
 
 
-class Parameter(metaclass=FastEnum):
-    ID = "ID"  # ItemType + int
+class Parameter(Enum):
+    ID = "ID"  # ElementNode + int
     SCORE = "score"  # Score
 
 
+@dataclass
 class Vote(AbstractAction):
-    IDS_SEPARATOR = ","
-    MAX_QUERY = 25
+    # TODO: instead of splitting ids, check on each result what is missing, would be a little faster on non-concurrent
+    ACTION: ClassVar[Action] = Action.VOTE
+    MAX_QUERY: ClassVar[int] = REQUEST_VOTE_MAX_COUNT
+    IDS_SEPARATOR: ClassVar[str] = ","
 
-    def __init__(self, ids: Iterable[Tuple[ItemType, int]], score: Score):
-        self.ids = ids = set(ids)
+    ids: InitVar[list[int]]
+    score: Score
+
+    def __post_init__(self, ids: Iterable[int]):
+        self.ids = ids = list(set(ids))
         if not ids:
             raise Exception("Require at least one id")
-        if (max := self.MAX_QUERY) < len(ids):
-            raise Exception(f"Can not query more than {max}")
-        self.score = score
 
-    @staticmethod
-    def get_action() -> Action:
-        return Action.VOTE
+    def __iter__(self) -> Iterator[Iterator[tuple[str, Union[str, int]]]]:
+        cursor = 0
+        chunk_size = self.MAX_QUERY
+        ids = self.ids
+        end = len(self.ids)
+        while cursor < end:
+            chunk_start = cursor
+            cursor = cursor + chunk_size
+            self.ids = ids[chunk_start:cursor]
+            yield self
 
-    @property
-    def params(self) -> dict[str, Union[int, str]]:
-        params = super().params
-        params[Parameter.ID.value] = self.IDS_SEPARATOR.join(
-            type_.value + str(id_) for id_, type_ in self.ids
+    def items(self) -> Iterator[tuple[str, Union[str, int]]]:
+        yield from super().items()
+        type_ = ElementPrefix.BOOK.value
+        yield Parameter.ID.value, self.IDS_SEPARATOR.join(
+            type_ + str(id_) for id_ in self.ids
         )
-        params[Parameter.SCORE.value] = self.score.value
-        return params
+        yield Parameter.SCORE.value, self.score.value

@@ -1,24 +1,24 @@
-from fast_enum import FastEnum
+from enum import Enum
+from typing import Iterator, Optional, Union
 
+from ..configuration import RESPONSE_MAX_COUNT
 from .abstract import AbstractAction
 
 
-class Parameter(metaclass=FastEnum):
+class Parameter(Enum):
     PAGE = "page"  # int > 0
 
 
 class AbstractPaginatedAction(AbstractAction):
-    page: int
+    PAGE_SIZE = RESPONSE_MAX_COUNT
+    page: Optional[int] = None
 
-    def __init__(self, page: int) -> None:
-        if page:
-            page = int(page)
-        if not page or page < 1:
-            page = 1
-        self.page = page
+    def __iter__(self) -> Iterator[Iterator[tuple[str, Union[str, int]]]]:
+        self.page = 0
+        max = self.PAGE_SIZE
+        while len((yield self).elements) == max:
+            self.page += 1
 
-    @property
-    def params(self) -> dict[str, str]:
-        params = super().params
-        params[Parameter.PAGE.value] = self.page
-        return params
+    def items(self) -> Iterator[tuple[str, Union[str, int]]]:
+        yield from super().items()
+        yield Parameter.PAGE.value, self.page
