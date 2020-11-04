@@ -1,16 +1,12 @@
 name: importer
 channels:
-  - conda-forge # pip, python, httpx, fire, python-dotenv, lxml, multimethod
+  - conda-forge # pip, python, httpx, fire, multimethod
 dependencies:
   - python=3.9
   # - httpx
   - multimethod
   #  - fire
-  - lxml
-  - python-dotenv
   - pip
   - pip:
-      - git+https://github.com/QratorLabs/fastenum.git
-      - xml-dataclasses
       - xsdata
       - httpx # Fail to import in 3.9.0
