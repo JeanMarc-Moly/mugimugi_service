@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Iterator, Union
 
+from ...enum import Position
 from ..root import ValidRoot, XmlType
 from .abstract import (
     AbstractLinker,
@@ -77,4 +78,13 @@ class CircleRoot(ValidRoot[Circle]):
 
 @dataclass
 class LinkedPartialCircle(AbstractCircle, LinkedPartialItem):
-    ...
+    position: Position = field(
+        default=None,
+        metadata=dict(
+            name="FRQ",
+            type=XmlType.ATTRIBUTE,
+            required=True,
+            min_inclusive=0,
+            max_inclusive=2,
+        ),
+    )

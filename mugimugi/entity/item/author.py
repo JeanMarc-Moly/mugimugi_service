@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Iterator
 
+from ...enum import Position
 from ..root import ValidRoot, XmlType
 from .abstract import (
     AbstractLinker,
@@ -72,4 +73,13 @@ class LinkedAuthor(AbstractAuthor, LinkedItem):
 
 @dataclass
 class LinkedPartialAuthor(AbstractAuthor, LinkedPartialItem):
-    ...
+    position: Position = field(
+        default=None,
+        metadata=dict(
+            name="FRQ",
+            type=XmlType.ATTRIBUTE,
+            required=True,
+            min_inclusive=0,
+            max_inclusive=2,
+        ),
+    )

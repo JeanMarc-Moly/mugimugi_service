@@ -8,7 +8,8 @@ from .item_type import ItemType
 from .language import Language
 from .match import Match
 from .object_type import ObjectType
+from .position import Position
 from .score import Score
-from .share import Share
+from .ratio import Ratio
 from .sort_order import SortOrder
 from .yes_no import YesNo

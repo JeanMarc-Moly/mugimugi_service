@@ -1,7 +1,8 @@
 from dataclasses import dataclass, field
 
+from ...enum import Ratio
 from ..root import ValidRoot, XmlType
-from .abstract import ElementPrefix, Item, ItemType, LinkedItem, LinkedPartialItem
+from .abstract import ElementPrefix, Item, ItemType, LinkedPartialItem
 
 
 @dataclass
@@ -37,4 +38,13 @@ class GenreRoot(ValidRoot[Genre]):
 
 @dataclass
 class LinkedPartialGenre(AbstractGenre, LinkedPartialItem):
-    ...
+    ratio: Ratio = field(
+        default=None,
+        metadata=dict(
+            name="FRQ",
+            type=XmlType.ATTRIBUTE,
+            required=True,
+            min_inclusive=0,
+            max_inclusive=5,
+        ),
+    )

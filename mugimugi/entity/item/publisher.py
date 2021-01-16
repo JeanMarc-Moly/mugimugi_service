@@ -37,4 +37,9 @@ class PublisherRoot(ValidRoot[Publisher]):
 
 @dataclass
 class LinkedPartialPublisher(AbstractPublisher, LinkedPartialItem):
-    ...
+    # FRQ present but useless
+    _frq: int = field(
+        init=False,
+        default=0,
+        metadata=dict(name="FRQ", type=XmlType.ATTRIBUTE, required=True),
+    )

@@ -87,4 +87,9 @@ class ConventionRoot(ValidRoot[Convention]):
 
 @dataclass
 class LinkedPartialConvention(AbstractConvention, LinkedPartialItem):
-    ...
+    # FRQ present but useless
+    _frq: int = field(
+        init=False,
+        default=0,
+        metadata=dict(name="FRQ", type=XmlType.ATTRIBUTE, required=True),
+    )

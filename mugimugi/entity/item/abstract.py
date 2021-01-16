@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Generic, Iterator, TypeVar
-from ...enum import ElementPrefix, Share, ItemType, ElementNode
+
+from ...enum import ElementNode, ElementPrefix, ItemType
 from ..root import ManyNamesElement, XmlType
 
 
@@ -46,16 +47,7 @@ class LinkedItem(AbstractItem):
 
 @dataclass
 class LinkedPartialItem(AbstractItem):
-    ratio: Share = field(
-        default=None,
-        metadata=dict(
-            name="FRQ",
-            type=XmlType.ATTRIBUTE,
-            required=True,
-            min_inclusive=0,
-            max_inclusive=5,
-        ),
-    )
+    ...
 
 
 LI = TypeVar("LI", bound=LinkedItem)

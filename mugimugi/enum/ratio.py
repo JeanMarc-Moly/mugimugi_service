@@ -1,7 +1,7 @@
 from enum import IntEnum
 
 
-class Share(IntEnum):
+class Ratio(IntEnum):
     NOT_SET = 0
     VERY_FEW = 1
     SOME = 2

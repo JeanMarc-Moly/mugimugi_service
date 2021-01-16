@@ -37,4 +37,9 @@ class ImprintRoot(ValidRoot[Imprint]):
 
 @dataclass
 class LinkedPartialImprint(AbstractImprint, LinkedPartialItem):
-    ...
+    # FRQ present but useless
+    _frq: int = field(
+        init=False,
+        default=0,
+        metadata=dict(name="FRQ", type=XmlType.ATTRIBUTE, required=True),
+    )
