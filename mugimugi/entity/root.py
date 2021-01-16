@@ -2,7 +2,7 @@ from abc import ABC
 from dataclasses import dataclass, field
 from typing import Generic, Iterator, TypeVar
 
-from xsdata.formats.dataclass.models.constants import XmlType
+from xsdata.formats.dataclass.models.elements import XmlType
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.parsers.nodes import ParserError

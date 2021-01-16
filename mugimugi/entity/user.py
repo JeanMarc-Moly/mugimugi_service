@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 
-from xsdata.formats.dataclass.models.constants import XmlType
+from xsdata.formats.dataclass.models.elements import XmlType
 
 from ..enum.element_node import ElementNode
 
