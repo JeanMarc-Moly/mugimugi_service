@@ -3,10 +3,9 @@ channels:
   - conda-forge # pip, python, httpx, fire, multimethod
 dependencies:
   - python=3.9
-  # - httpx
+  - httpx
   - multimethod
   #  - fire
   - pip
   - pip:
       - xsdata
-      - httpx # Fail to import in 3.9.0

@@ -8,11 +8,11 @@ from .abstract import (
     Item,
     ItemType,
     LinkableItem,
-    LinkedItem, LinkedPartialItem,
+    LinkedItem,
+    LinkedPartialItem,
 )
 from .character import LinkedCharacter
 from .content import LinkedContent
-
 
 LI = Union[LinkedContent, LinkedCharacter]
 

@@ -42,7 +42,7 @@ class SearchItem(AbstractPaginatedAction):
 
     def items(self) -> Iterator[tuple[str, Union[str, int]]]:
         yield from super().items()
-        
+
         p = self.Parameter
 
         if (title := self.title) is not None:

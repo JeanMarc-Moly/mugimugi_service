@@ -29,9 +29,7 @@ class AbstractService(Generic[E]):
             action.page += 1
 
     async def fetch_all_elements(
-        self,
-        action: AbstractPaginatedAction,
-        limit: Optional[int] = None,
+        self, action: AbstractPaginatedAction, limit: Optional[int] = None,
     ) -> Iterator[E]:
         async for page in self.fetch_all(action):
             for elements in page:
@@ -39,6 +37,8 @@ class AbstractService(Generic[E]):
                 if limit and not (limit := limit - 1):
                     return
 
-    async def fetch_elements(self,action: AbstractAction,) -> Iterator[E]:
-        for element in self.CONSTRUCTOR.parse.parse(await self._api.query(action)).elements:
+    async def fetch_elements(self, action: AbstractAction,) -> Iterator[E]:
+        for element in self.CONSTRUCTOR.parse.parse(
+            await self._api.query(action)
+        ).elements:
             yield element

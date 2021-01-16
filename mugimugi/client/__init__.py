@@ -24,7 +24,6 @@ class Client:
     @staticmethod
     def _parse(r: Response) -> str:
         content = r.text
-        # print(content)
         if (status := r.status_code) != codes.OK:
             raise Exception(f"Error {codes(status)} ({status}): {content}")
 

@@ -1,13 +1,19 @@
 from dataclasses import dataclass, field
-from ..converter import date
 from typing import Iterator, Union
 
+from ..converter import date
 from ..root import ValidRoot, XmlType
-from .abstract import AbstractLinker, ElementPrefix, Item, ItemType, LinkableItem, LinkedPartialItem
+from .abstract import (
+    AbstractLinker,
+    ElementPrefix,
+    Item,
+    ItemType,
+    LinkableItem,
+    LinkedPartialItem,
+)
 from .character import LinkedCharacter
 from .content import LinkedContent
 from .parody import LinkedParody
-
 
 LI = Union[LinkedContent, LinkedParody, LinkedCharacter]
 

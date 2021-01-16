@@ -76,7 +76,6 @@ class Item(Generic[EI], AbstractService[EI], Getter[EI]):
             while paginated_action := action.send(response):
                 response = yield query(paginated_action)
 
-
     async def add(self, **kwargs) -> bool:
         raise Exception("Not Implemented")
 

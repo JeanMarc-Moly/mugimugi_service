@@ -2,14 +2,22 @@ from asyncio import run
 from contextlib import suppress
 from dataclasses import dataclass
 from datetime import date
+from typing import (
+    AsyncIterator,
+    ClassVar,
+    Coroutine,
+    Iterable,
+    Iterator,
+    Optional,
+    Type,
+)
 
-from typing import AsyncIterator, ClassVar, Optional, Iterable, Iterator, Coroutine, Type
-
-from ..entity.book import BookRoot, Book as Entity
+from ..action.search_object import SearchObject
+from ..entity.book import Book as Entity
+from ..entity.book import BookRoot
+from ..enum import ObjectType, SortOrder, YesNo
 from .abstract import AbstractService
 from .abstract_getter import Getter
-from ..enum import YesNo, Match, ObjectType, SortOrder
-from ..action.search_object import SearchObject
 
 
 @dataclass
@@ -46,7 +54,31 @@ class Book(AbstractService[BookRoot], Getter[BookRoot]):
     ) -> Iterator[Entity]:
         with suppress(StopIteration):
             parse = self.CONSTRUCTOR.parse
-            pages = self.search_pages(title, is_adult_only, is_anthology, is_copy_book, is_free, is_censored, object_type, date_from, date_to, circles, authors, parodies, characters, contents, genres, convention, collection, publisher, imprint, contributor, submitter, sort_criterion, sort_order)
+            pages = self.search_pages(
+                title,
+                is_adult_only,
+                is_anthology,
+                is_copy_book,
+                is_free,
+                is_censored,
+                object_type,
+                date_from,
+                date_to,
+                circles,
+                authors,
+                parodies,
+                characters,
+                contents,
+                genres,
+                convention,
+                collection,
+                publisher,
+                imprint,
+                contributor,
+                submitter,
+                sort_criterion,
+                sort_order,
+            )
             page = None
             while page := pages.send(page):
                 page = parse(await page)
@@ -85,7 +117,31 @@ class Book(AbstractService[BookRoot], Getter[BookRoot]):
     ) -> Iterator[Entity]:
         with suppress(StopIteration):
             parse = self.CONSTRUCTOR.parse
-            pages = self.search_pages(title, is_adult_only, is_anthology, is_copy_book, is_free, is_censored, object_type, date_from, date_to, circles, authors, parodies, characters, contents, genres, convention, collection, publisher, imprint, contributor, submitter, sort_criterion, sort_order)
+            pages = self.search_pages(
+                title,
+                is_adult_only,
+                is_anthology,
+                is_copy_book,
+                is_free,
+                is_censored,
+                object_type,
+                date_from,
+                date_to,
+                circles,
+                authors,
+                parodies,
+                characters,
+                contents,
+                genres,
+                convention,
+                collection,
+                publisher,
+                imprint,
+                contributor,
+                submitter,
+                sort_criterion,
+                sort_order,
+            )
             page = None
             while page := pages.send(page):
                 page = parse(run(page))

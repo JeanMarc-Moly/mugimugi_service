@@ -8,7 +8,8 @@ from .abstract import (
     Item,
     ItemType,
     LinkableItem,
-    LinkedItem, LinkedPartialItem,
+    LinkedItem,
+    LinkedPartialItem,
 )
 from .content import LinkedContent
 

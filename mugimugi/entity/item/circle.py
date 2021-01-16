@@ -13,7 +13,6 @@ from .abstract import (
 from .author import LinkedAuthor
 from .content import LinkedContent
 
-
 LI = Union[LinkedContent, LinkedAuthor]
 
 
