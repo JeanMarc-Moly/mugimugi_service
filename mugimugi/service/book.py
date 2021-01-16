@@ -12,6 +12,8 @@ from typing import (
     Type,
 )
 
+from mugimugi.enum.element_prefix import ElementPrefix
+
 from ..action.search_object import SearchObject
 from ..entity.book import Book as Entity
 from ..entity.book import BookRoot
@@ -22,6 +24,7 @@ from .abstract_getter import Getter
 
 @dataclass
 class Book(AbstractService[BookRoot], Getter[BookRoot]):
+    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.BOOK
     CONSTRUCTOR: ClassVar[Type] = BookRoot
 
     async def search(
