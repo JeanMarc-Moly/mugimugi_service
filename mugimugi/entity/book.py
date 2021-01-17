@@ -78,7 +78,7 @@ class Book(ManyNamesElement):
         default=None,
         metadata=dict(name="DATA_ISBN", type=XmlType.ELEMENT, required=True),
     )
-    pages_count: str = field(
+    pages_count: int = field(
         default=None,
         metadata=dict(name="DATA_PAGES", type=XmlType.ELEMENT, required=True),
     )
