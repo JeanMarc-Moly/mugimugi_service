@@ -16,6 +16,7 @@ from .item import (
     LinkedPartialImprint,
     LinkedPartialParody,
     LinkedPartialPublisher,
+    LinkedPartialType,
 )
 from .item.abstract import Item
 from .root import ManyNamesElement, ValidRoot, XmlType
@@ -31,6 +32,7 @@ LI = Union[
     LinkedPartialImprint,
     LinkedPartialParody,
     LinkedPartialPublisher,
+    LinkedPartialType,
 ]
 
 
