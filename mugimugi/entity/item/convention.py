@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
+from datetime import date
 from typing import Iterator, Union
 
-from ..converter import date
 from ..root import ValidRoot, XmlType
 from .abstract import (
     AbstractLinker,
@@ -44,11 +44,15 @@ class AbstractConvention:
     )
     date_start: date = field(
         default=None,
-        metadata=dict(name="DATE_START", type=XmlType.ELEMENT, required=True),
+        metadata=dict(
+            name="DATE_START", type=XmlType.ELEMENT, required=True, format="%Y-%m-%d"
+        ),
     )
     date_end: date = field(
         default=None,
-        metadata=dict(name="DATE_END", type=XmlType.ELEMENT, required=True),
+        metadata=dict(
+            name="DATE_END", type=XmlType.ELEMENT, required=True, format="%Y-%m-%d"
+        ),
     )
 
     @property

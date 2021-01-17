@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from datetime import date
 from typing import Iterator, Union
 
 from ..enum import ElementPrefix, Language
@@ -67,9 +68,11 @@ class Book(ManyNamesElement):
             name="search", type=XmlType.ATTRIBUTE, required=True, min_inclusive=0
         ),
     )
-    release_date: str = field(
+    release_date: date = field(
         default=None,
-        metadata=dict(name="DATE_RELEASED", type=XmlType.ELEMENT, required=True),
+        metadata=dict(
+            name="DATE_RELEASED", type=XmlType.ELEMENT, required=True, format="%Y-%m-%d"
+        ),
     )
     isbn: str = field(
         default=None,
