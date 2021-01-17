@@ -5,15 +5,15 @@ from typing import Iterator
 class ElementPrefix(Enum):
     AUTHOR = "A"
     BOOK = "B"
-    CIRCLE = "C"
-    GENRE = "G"
     CHARACTER = "H"
-    IMPRINT = "I"
-    CONTENT = "K"
-    PUBLISHER = "L"
-    CONVENTION = "N"
+    CIRCLE = "C"
     COLLECTION = "O"
+    CONTENT = "K"
+    CONVENTION = "N"
+    GENRE = "G"
+    IMPRINT = "I"
     PARODY = "P"
+    PUBLISHER = "L"
     TYPE = "T"
 
     @classmethod

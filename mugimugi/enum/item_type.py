@@ -2,13 +2,14 @@ from enum import Enum
 
 
 class ItemType(Enum):
-    CIRCLE = "circle"
     AUTHOR = "author"
-    PARODY = "parody"
+    CIRCLE = "circle"
     CHARACTER = "character"
-    CONTENT = "contents"
-    GENRE = "genre"
-    CONVENTION = "convention"
     COLLECTION = "collections"
-    PUBLISHER = "publisher"
+    CONTENT = "contents"
+    CONVENTION = "convention"
+    GENRE = "genre"
     IMPRINT = "imprint"
+    PARODY = "parody"
+    PUBLISHER = "publisher"
+    TYPE = "type"
