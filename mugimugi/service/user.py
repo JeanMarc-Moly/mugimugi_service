@@ -1,6 +1,8 @@
 from dataclasses import dataclass
+
 from ..client import Client
-from ..entity.root import EmptyRoot, User as UserEntity
+from ..entity.root import EmptyRoot
+from ..entity.root import User as UserEntity
 
 
 @dataclass

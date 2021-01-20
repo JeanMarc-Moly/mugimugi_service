@@ -1,6 +1,6 @@
 from typing import AsyncIterator, Iterable, Set
-from multimethod import multimethod
 
+from multimethod import multimethod
 
 from ..entity.image import Image as Entity
 

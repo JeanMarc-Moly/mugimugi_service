@@ -4,7 +4,7 @@ from typing import AsyncIterator, ClassVar, Coroutine, Iterator, Optional, Type
 
 from ..action import SearchItem
 from ..entity.item.convention import ConventionRoot
-from ..enum import ElementPrefix, SortOrder, ItemType
+from ..enum import ElementPrefix, ItemType, SortOrder
 from .abstract_item import Item
 
 

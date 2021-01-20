@@ -1,5 +1,5 @@
-from typing import ClassVar
 from contextlib import suppress
+from typing import ClassVar
 
 from httpx import AsyncClient, Response, codes
 from httpx._types import QueryParamTypes

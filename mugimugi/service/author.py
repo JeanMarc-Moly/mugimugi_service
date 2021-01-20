@@ -2,8 +2,8 @@ from typing import ClassVar, Type
 
 from ..entity.item.author import AuthorRoot
 from ..enum import ElementPrefix
-from .abstract_item import Item
 from .abstract import ItemType
+from .abstract_item import Item
 
 
 class Author(Item[AuthorRoot]):

@@ -1,6 +1,6 @@
-from dataclasses import dataclass, InitVar
-from typing import ClassVar, Iterator, Tuple, Union, Iterable
+from dataclasses import InitVar, dataclass
 from enum import Enum
+from typing import ClassVar, Iterable, Iterator, Tuple, Union
 
 from ..enum import ElementPrefix
 from .abstract import AbstractAction

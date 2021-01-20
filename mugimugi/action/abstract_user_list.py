@@ -1,13 +1,11 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
+from enum import Enum
 from typing import ClassVar, Iterable, Iterator, TypeVar, Union
 
-from enum import Enum
-
-from dataclasses import dataclass
-
-from ..enum import ElementNode
 from ..configuration import REQUEST_EDIT_LIST_MAX_COUNT
+from ..enum import ElementNode
 from .abstract import AbstractAction
 
 

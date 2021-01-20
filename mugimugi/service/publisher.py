@@ -2,8 +2,8 @@ from typing import ClassVar, Type
 
 from ..entity.item.publisher import PublisherRoot
 from ..enum import ElementPrefix
-from .abstract_item import Item
 from .abstract import ItemType
+from .abstract_item import Item
 
 
 class Publisher(Item[PublisherRoot]):

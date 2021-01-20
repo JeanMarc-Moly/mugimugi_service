@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from typing import ClassVar
-from .abstract_user_list import AbstractUserListAction
+
 from ..enum import Action
+from .abstract_user_list import AbstractUserListAction
 
 
 @dataclass

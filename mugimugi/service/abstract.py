@@ -6,7 +6,6 @@ from ..client import Client
 from ..entity.root import AbstractRoot
 from ..enum import ElementPrefix, ItemType
 
-
 E = TypeVar("E", bound=AbstractRoot)
 
 
