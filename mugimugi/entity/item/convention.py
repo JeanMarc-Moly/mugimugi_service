@@ -61,20 +61,23 @@ class AbstractConvention:
 
     @property
     def contents(self) -> Iterator[LinkedContent]:
-        for e in self.items:
-            if e.type is ItemType.CONTENT:
+        type_ = ItemType.CONTENT
+        for e in self._links.items:
+            if e.type is type_:
                 yield e
 
     @property
     def parodies(self) -> Iterator[LinkedParody]:
-        for e in self.items:
-            if e.type is ItemType.PARODY:
+        type_ = ItemType.PARODY
+        for e in self._links.items:
+            if e.type is type_:
                 yield e
 
     @property
     def characters(self) -> Iterator[LinkedCharacter]:
-        for e in self.items:
-            if e.type is ItemType.CHARACTER:
+        type_ = ItemType.CHARACTER
+        for e in self._links.items:
+            if e.type is type_:
                 yield e
 
 
