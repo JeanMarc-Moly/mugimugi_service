@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Iterator, Union
 
 from ...enum import Ratio
@@ -28,6 +29,9 @@ class Linker(AbstractLinker[LI]):
 
 @dataclass
 class AbstractParody:
+    class Type(Enum):
+        TYPE = ItemType.PARODY
+
     id: str = field(
         default=None,
         metadata=dict(
@@ -37,9 +41,9 @@ class AbstractParody:
             pattern=fr"{ElementPrefix.PARODY.value}\d+",
         ),
     )
-    type: ItemType = field(
-        init=False,
-        default=ItemType.PARODY,
+    # Used as discriminator
+    _type: Type = field(
+        default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
 

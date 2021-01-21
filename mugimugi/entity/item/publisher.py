@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from enum import Enum
 
 from ..root import ValidRoot, XmlType
 from .abstract import ElementPrefix, Item, ItemType, LinkedPartialItem
@@ -6,6 +7,9 @@ from .abstract import ElementPrefix, Item, ItemType, LinkedPartialItem
 
 @dataclass
 class AbstractPublisher:
+    class Type(Enum):
+        TYPE = ItemType.PUBLISHER
+
     id: str = field(
         default=None,
         metadata=dict(
@@ -15,9 +19,9 @@ class AbstractPublisher:
             pattern=fr"{ElementPrefix.PUBLISHER.value}\d+",
         ),
     )
-    type: ItemType = field(
-        init=False,
-        default=ItemType.PUBLISHER,
+    # Used as discriminator
+    _type: Type = field(
+        default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
 

@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Iterator
 
 from ...enum import Position
@@ -25,6 +26,9 @@ class Linker(AbstractLinker[LinkedContent]):
 
 @dataclass
 class AbstractAuthor:
+    class Type(Enum):
+        TYPE = ItemType.AUTHOR
+
     id: str = field(
         default=None,
         metadata=dict(
@@ -34,9 +38,9 @@ class AbstractAuthor:
             pattern=fr"{ElementPrefix.AUTHOR.value}\d+",
         ),
     )
-    type: ItemType = field(
-        init=False,
-        default=ItemType.AUTHOR,
+    # Used as discriminator
+    _type: Type = field(
+        default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
     parent: int = field(

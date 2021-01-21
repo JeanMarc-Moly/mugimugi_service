@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from datetime import date
+from enum import Enum
 from typing import Iterator, Union
 
 from ..root import ValidRoot, XmlType
@@ -28,6 +29,9 @@ class Linker(AbstractLinker[LI]):
 
 @dataclass
 class AbstractConvention:
+    class Type(Enum):
+        TYPE = ItemType.CONVENTION
+
     id: str = field(
         default=None,
         metadata=dict(
@@ -37,9 +41,9 @@ class AbstractConvention:
             pattern=fr"{ElementPrefix.CONVENTION.value}\d+",
         ),
     )
-    type: ItemType = field(
-        init=False,
-        default=ItemType.CONVENTION,
+    # Used as discriminator
+    _type: Type = field(
+        default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
     date_start: date = field(

@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Iterator, Union
 
 from ...enum import Position
@@ -27,6 +28,9 @@ class Linker(AbstractLinker[LI]):
 
 @dataclass
 class AbstractCircle:
+    class Type(Enum):
+        TYPE = ItemType.CIRCLE
+
     id: str = field(
         default=None,
         metadata=dict(
@@ -36,9 +40,9 @@ class AbstractCircle:
             pattern=fr"{ElementPrefix.CIRCLE.value}\d+",
         ),
     )
-    type: ItemType = field(
-        init=False,
-        default=ItemType.CIRCLE,
+    # Used as discriminator
+    _type: Type = field(
+        default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
     parent: int = field(

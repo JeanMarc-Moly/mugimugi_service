@@ -25,7 +25,7 @@ class AbstractItem(ManyNamesElement):
             name="VER", type=XmlType.ATTRIBUTE, required=True, min_inclusive=0
         ),
     )
-    type: ItemType = field(
+    _type: ItemType = field(
         default=None, metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True)
     )
     objects_count: int = field(

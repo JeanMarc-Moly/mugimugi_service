@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from enum import Enum
 
 from ..root import ValidRoot, XmlType
 from .abstract import ElementPrefix, Item, ItemType, LinkedPartialItem
@@ -6,6 +7,9 @@ from .abstract import ElementPrefix, Item, ItemType, LinkedPartialItem
 
 @dataclass
 class AbstractImprint:
+    class Type(Enum):
+        TYPE = ItemType.IMPRINT
+
     id: str = field(
         default=None,
         metadata=dict(
@@ -15,9 +19,9 @@ class AbstractImprint:
             pattern=fr"{ElementPrefix.IMPRINT.value}\d+",
         ),
     )
-    type: ItemType = field(
-        init=False,
-        default=ItemType.IMPRINT,
+    # Used as discriminator
+    _type: Type = field(
+        default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
 
