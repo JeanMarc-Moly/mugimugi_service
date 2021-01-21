@@ -1,7 +1,9 @@
 from abc import ABC
 from dataclasses import dataclass, field
 from typing import Generic, Iterator, TypeVar
+from warnings import catch_warnings, filterwarnings, simplefilter
 
+from xsdata.exceptions import ConverterWarning
 from xsdata.formats.dataclass.models.elements import XmlType
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
@@ -14,6 +16,16 @@ from .user import User
 PARSER = XmlParser(config=ParserConfig(fail_on_unknown_properties=True)).from_string
 
 
+def parse(cls, xml: str):
+    try:
+        with catch_warnings():
+            filterwarnings("ignore", category=ConverterWarning)
+            simplefilter("ignore")
+            return PARSER(xml, cls)
+    except ParserError as e:
+        raise TypeError(f"Failed to parse: {e}")
+
+
 @dataclass
 class AbstractRoot(ABC):
     class Meta:
@@ -21,10 +33,7 @@ class AbstractRoot(ABC):
 
     @classmethod
     def parse(cls, xml: str):
-        try:
-            return PARSER(xml, cls)
-        except ParserError as e:
-            raise TypeError(f"Failed to parse: {e}")
+        return parse(cls, xml)
 
 
 @dataclass
