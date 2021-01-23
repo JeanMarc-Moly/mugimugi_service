@@ -5,9 +5,9 @@ from typing import Coroutine, Generic, Iterable, Iterator, Optional, TypeVar, Un
 from multimethod import multimethod
 
 from ..action import GetItemById
-from ..entity.item.abstract import AbstractItem
+from ..entity.main import Item
 
-EI = TypeVar("EI", bound=AbstractItem)
+EI = TypeVar("EI", bound=Item)
 
 
 @dataclass

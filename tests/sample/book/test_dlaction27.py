@@ -1,20 +1,7 @@
 from datetime import date
 from unittest.case import TestCase
 
-from mugimugi.entity.book import Book, Linker
-from mugimugi.entity.item import (
-    LinkedPartialAuthor,
-    LinkedPartialCharacter,
-    LinkedPartialCircle,
-    LinkedPartialCollection,
-    LinkedPartialContent,
-    LinkedPartialConvention,
-    LinkedPartialGenre,
-    LinkedPartialImprint,
-    LinkedPartialParody,
-    LinkedPartialPublisher,
-    LinkedPartialType,
-)
+from mugimugi.entity.main.book import *
 from mugimugi.enum import Language, Position, Ratio, Sex
 
 from ...configuration import SAMPLE
@@ -41,9 +28,9 @@ class TestBookDLAction27(Sample, TestCase):
         magazine=0,
         language=Language.JAPANESE,
         info="",
-        _links=Linker(
+        _links=Book.Linker(
             items=[
-                LinkedPartialGenre(
+                Genre(
                     english_name="For men",
                     japanese_name="男性向け",
                     romaji_name="",
@@ -53,7 +40,7 @@ class TestBookDLAction27(Sample, TestCase):
                     objects_count=346049,
                     ratio=Ratio.NOT_SET,
                 ),
-                LinkedPartialConvention(
+                Convention(
                     english_name="Comic Revolution 36",
                     japanese_name="コミックレヴォリューション 36",
                     romaji_name="コミックレヴォリューション36",
@@ -64,7 +51,7 @@ class TestBookDLAction27(Sample, TestCase):
                     date_start=date(2004, 10, 3),
                     date_end=date(2004, 10, 3),
                 ),
-                LinkedPartialPublisher(
+                Publisher(
                     english_name="No Publisher",
                     japanese_name="出版社なし",
                     romaji_name="",
@@ -73,7 +60,7 @@ class TestBookDLAction27(Sample, TestCase):
                     version=2,
                     objects_count=1492741,
                 ),
-                LinkedPartialCollection(
+                Collection(
                     english_name="D.L. action",
                     japanese_name="D.L. action",
                     romaji_name="",
@@ -82,7 +69,7 @@ class TestBookDLAction27(Sample, TestCase):
                     version=1,
                     objects_count=109,
                 ),
-                LinkedPartialImprint(
+                Imprint(
                     english_name="No Imprint",
                     japanese_name="レーベルなし",
                     romaji_name="",
@@ -91,7 +78,7 @@ class TestBookDLAction27(Sample, TestCase):
                     version=2,
                     objects_count=848115,
                 ),
-                LinkedPartialType(
+                Type(
                     english_name="Doujinshi",
                     japanese_name="同人誌",
                     romaji_name="",
@@ -100,7 +87,7 @@ class TestBookDLAction27(Sample, TestCase):
                     version=1,
                     objects_count=1329929,
                 ),
-                LinkedPartialCircle(
+                Circle(
                     english_name="Digital Lover",
                     japanese_name="Digital Lover",
                     romaji_name="デジタルラバー",
@@ -111,7 +98,7 @@ class TestBookDLAction27(Sample, TestCase):
                     parent=0,
                     position=Position.MAIN,
                 ),
-                LinkedPartialAuthor(
+                Author(
                     english_name="Nakajima Yuka",
                     japanese_name="なかじまゆか",
                     romaji_name="ナカジマユカ",
@@ -122,7 +109,7 @@ class TestBookDLAction27(Sample, TestCase):
                     parent=0,
                     position=Position.MAIN,
                 ),
-                LinkedPartialParody(
+                Parody(
                     english_name="Fate/stay night",
                     japanese_name="Fate/stay night",
                     romaji_name="フェイトステイナイト",
@@ -132,7 +119,7 @@ class TestBookDLAction27(Sample, TestCase):
                     objects_count=5268,
                     ratio=Ratio.NOT_SET,
                 ),
-                LinkedPartialCharacter(
+                Character(
                     english_name="Caster",
                     japanese_name="キャスター",
                     romaji_name="キャスター",
@@ -144,7 +131,7 @@ class TestBookDLAction27(Sample, TestCase):
                     age="",
                     ratio=Ratio.NOT_SET,
                 ),
-                LinkedPartialContent(
+                Content(
                     english_name="Domination (Femdom)",
                     japanese_name="女性支配・女王様・ドミナ",
                     romaji_name="",
@@ -154,7 +141,7 @@ class TestBookDLAction27(Sample, TestCase):
                     objects_count=7083,
                     ratio=Ratio.NOT_SET,
                 ),
-                LinkedPartialContent(
+                Content(
                     english_name="Elf",
                     japanese_name="エルフ",
                     romaji_name="",
@@ -164,7 +151,7 @@ class TestBookDLAction27(Sample, TestCase):
                     objects_count=2803,
                     ratio=Ratio.NOT_SET,
                 ),
-                LinkedPartialContent(
+                Content(
                     english_name="Group Sex",
                     japanese_name="グループセックス",
                     romaji_name="",
@@ -174,7 +161,7 @@ class TestBookDLAction27(Sample, TestCase):
                     objects_count=39263,
                     ratio=Ratio.NOT_SET,
                 ),
-                LinkedPartialCharacter(
+                Character(
                     english_name="Tōsaka Rin",
                     japanese_name="遠坂凛",
                     romaji_name="トオサカリン",

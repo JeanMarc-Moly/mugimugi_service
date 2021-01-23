@@ -3,12 +3,13 @@ from datetime import date
 from typing import AsyncIterator, ClassVar, Coroutine, Iterator, Optional, Type
 
 from ..action import SearchItem
-from ..entity.item.convention import ConventionRoot
+from ..entity.root import ConventionRoot
 from ..enum import ElementPrefix, ItemType, SortOrder
 from .abstract_item import Item
+from ..entity.main import Convention as Entity
 
 
-class Convention(Item[ConventionRoot]):
+class Convention(Item[ConventionRoot, Entity]):
     ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.CONVENTION
     SEARCH_TYPE: ClassVar[ItemType] = ItemType.CONVENTION
     CONSTRUCTOR: ClassVar[Type] = ConventionRoot

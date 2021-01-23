@@ -2,7 +2,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Type
 
-from mugimugi.entity.root import parse
+from mugimugi.entity.utils.xml import parse
 
 from ..configuration import SAMPLE
 

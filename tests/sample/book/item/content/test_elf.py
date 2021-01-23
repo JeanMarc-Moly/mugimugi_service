@@ -1,7 +1,6 @@
 from unittest.case import TestCase
 
-from mugimugi.entity.book import Linker
-from mugimugi.entity.item import LinkedPartialContent
+from mugimugi.entity.main.book import Content, Book
 from mugimugi.enum import Ratio
 
 from .....configuration import SAMPLE
@@ -10,8 +9,8 @@ from ....sample import Sample
 
 class TestBookContentElf(Sample, TestCase):
     file_path = SAMPLE / "book/item/content/elf.xml"
-    type = LinkedPartialContent
-    object = LinkedPartialContent(
+    type = Content
+    object = Content(
         english_name="Elf",
         japanese_name="エルフ",
         romaji_name="",
@@ -26,10 +25,10 @@ class TestBookContentElf(Sample, TestCase):
 class TestBookContentElfFromUnion(Sample):
 
     file_path = SAMPLE / "book/item/elf.xml"
-    type = Linker
-    object = Linker(
+    type = Book.Linker
+    object = Book.Linker(
         [
-            LinkedPartialContent(
+            Content(
                 english_name="Elf",
                 japanese_name="エルフ",
                 romaji_name="",

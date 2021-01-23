@@ -12,18 +12,16 @@ from typing import (
     Type,
 )
 
-from mugimugi.enum.element_prefix import ElementPrefix
-
 from ..action.search_object import SearchObject
-from ..entity.book import Book as Entity
-from ..entity.book import BookRoot
-from ..enum import ObjectType, SortOrder, YesNo
+from ..entity.main import Book as Entity
+from ..entity.root import BookRoot
+from ..enum import ElementPrefix, ObjectType, SortOrder, YesNo
 from .abstract import AbstractService
 from .abstract_getter import Getter
 
 
 @dataclass
-class Book(AbstractService[BookRoot], Getter[BookRoot]):
+class Book(AbstractService[BookRoot], Getter[Entity]):
     ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.BOOK
     CONSTRUCTOR: ClassVar[Type] = BookRoot
 

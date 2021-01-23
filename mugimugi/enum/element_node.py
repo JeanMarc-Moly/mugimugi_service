@@ -5,6 +5,7 @@ class ElementNode(Enum):
     LIST = "LIST"
     ERROR = "ERROR"
     ITEM = "ITEM"
+    LINK = "LINKS"
 
     AUTHOR = "AUTHOR"
     BOOK = "BOOK"

@@ -1,19 +1,16 @@
 from asyncio import run
 from contextlib import suppress
 from dataclasses import dataclass
-from typing import Coroutine, Generic, Iterator, Optional, TypeVar
+from typing import Coroutine, Generic, Iterator, Optional
 
 from ..action import SearchItem
-from ..entity.item.abstract import AbstractItem
 from ..enum import SortOrder
-from .abstract import AbstractService
-from .abstract_getter import Getter
-
-EI = TypeVar("EI", bound=AbstractItem)
+from .abstract import AbstractService, E
+from .abstract_getter import EI, Getter
 
 
 @dataclass
-class Item(Generic[EI], AbstractService[EI], Getter[EI]):
+class Item(Generic[E, EI], AbstractService[E], Getter[EI]):
     async def search(
         self,
         title: Optional[str] = None,
