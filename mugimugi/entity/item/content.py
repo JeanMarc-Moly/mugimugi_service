@@ -2,16 +2,17 @@ from dataclasses import dataclass, field
 from enum import Enum
 
 from ...enum import Ratio
+from ..abstract import Element
 from ..root import ValidRoot, XmlType
 from .abstract import ElementPrefix, Item, ItemType, LinkedItem, LinkedPartialItem
 
 
 @dataclass
-class AbstractContent:
+class AbstractContent(Element):
     class Type(Enum):
         TYPE = ItemType.CONTENT
 
-    id: str = field(
+    _id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -25,6 +26,8 @@ class AbstractContent:
         default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
+    prefix: ElementPrefix = ElementPrefix.CONTENT
+    type: ItemType = ItemType.CONTENT
 
 
 @dataclass

@@ -1,16 +1,17 @@
 from dataclasses import dataclass, field
 from enum import Enum
 
+from ..abstract import Element
 from ..root import XmlType
 from .abstract import ElementPrefix, ItemType, LinkedPartialItem
 
 
 @dataclass
-class AbstractType:
+class AbstractType(Element):
     class Type(Enum):
         TYPE = ItemType.TYPE
 
-    id: str = field(
+    _id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -24,12 +25,14 @@ class AbstractType:
         default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
+    prefix: ElementPrefix = ElementPrefix.TYPE
+    type: ItemType = ItemType.TYPE
 
 
 @dataclass
 class LinkedPartialType(AbstractType, LinkedPartialItem):
     # FRQ present but useless
-    _frq: int = field(
+    _: int = field(
         init=False,
         default=0,
         metadata=dict(name="FRQ", type=XmlType.ATTRIBUTE, required=True),

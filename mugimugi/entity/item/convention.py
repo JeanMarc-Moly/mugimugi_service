@@ -3,6 +3,7 @@ from datetime import date
 from enum import Enum
 from typing import Iterator, Union
 
+from ..abstract import Element
 from ..root import ValidRoot, XmlType
 from .abstract import (
     AbstractLinker,
@@ -28,11 +29,11 @@ class Linker(AbstractLinker[LI]):
 
 
 @dataclass
-class AbstractConvention:
+class AbstractConvention(Element):
     class Type(Enum):
         TYPE = ItemType.CONVENTION
 
-    id: str = field(
+    _id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -46,6 +47,8 @@ class AbstractConvention:
         default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
+    prefix: ElementPrefix = ElementPrefix.CONVENTION
+    type: ItemType = ItemType.CONVENTION
     date_start: date = field(
         default=None,
         metadata=dict(
@@ -57,6 +60,13 @@ class AbstractConvention:
         metadata=dict(
             name="DATE_END", type=XmlType.ELEMENT, required=True, format="%Y-%m-%d"
         ),
+    )
+
+
+@dataclass
+class Convention(AbstractConvention, LinkableItem[LI]):
+    _links: Linker = field(
+        default=None, metadata=dict(name="LINKS", type=XmlType.ELEMENT)
     )
 
     @property
@@ -82,13 +92,6 @@ class AbstractConvention:
 
 
 @dataclass
-class Convention(AbstractConvention, LinkableItem[LI]):
-    _links: Linker = field(
-        default=None, metadata=dict(name="LINKS", type=XmlType.ELEMENT)
-    )
-
-
-@dataclass
 class ConventionRoot(ValidRoot[Convention]):
     elements: list[Convention] = field(
         default_factory=list,
@@ -99,7 +102,7 @@ class ConventionRoot(ValidRoot[Convention]):
 @dataclass
 class LinkedPartialConvention(AbstractConvention, LinkedPartialItem):
     # FRQ present but useless
-    _frq: int = field(
+    _: int = field(
         init=False,
         default=0,
         metadata=dict(name="FRQ", type=XmlType.ATTRIBUTE, required=True),

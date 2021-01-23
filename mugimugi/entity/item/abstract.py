@@ -2,15 +2,16 @@ from dataclasses import dataclass, field
 from typing import Generic, Iterator, TypeVar
 
 from ...enum import ElementNode, ElementPrefix, ItemType
-from ..root import ManyNamesElement, XmlType
+from ..abstract import Element
+from ..root import XmlType
 
 
 @dataclass
-class AbstractItem(ManyNamesElement):
+class AbstractItem(Element):
     class Meta:
         name = ElementNode.ITEM.value
 
-    id: str = field(
+    _id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -19,6 +20,10 @@ class AbstractItem(ManyNamesElement):
             pattern=fr"[{''.join(ElementPrefix.values())}]\d+",
         ),
     )
+    _type: ItemType = field(
+        default=None, metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True)
+    )
+    type: ItemType = None
     version: int = field(
         default=None,
         metadata=dict(
@@ -35,9 +40,10 @@ class AbstractItem(ManyNamesElement):
         ),
     )
 
-    @property
-    def bare_id(self) -> int:
-        return int(self.id[1:])
+    def __post_init__(self):
+        super().__post_init__()
+        if self.type is None:
+            self.type = self._type.value
 
 
 @dataclass

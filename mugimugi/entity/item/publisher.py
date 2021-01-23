@@ -1,16 +1,18 @@
 from dataclasses import dataclass, field
 from enum import Enum
+from typing import Any
 
+from ..abstract import Element
 from ..root import ValidRoot, XmlType
 from .abstract import ElementPrefix, Item, ItemType, LinkedPartialItem
 
 
 @dataclass
-class AbstractPublisher:
+class AbstractPublisher(Element):
     class Type(Enum):
         TYPE = ItemType.PUBLISHER
 
-    id: str = field(
+    _id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -24,6 +26,8 @@ class AbstractPublisher:
         default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
+    prefix: ElementPrefix = ElementPrefix.PUBLISHER
+    type: ItemType = ItemType.PUBLISHER
 
 
 @dataclass
@@ -42,7 +46,7 @@ class PublisherRoot(ValidRoot[Publisher]):
 @dataclass
 class LinkedPartialPublisher(AbstractPublisher, LinkedPartialItem):
     # FRQ present but useless
-    _frq: int = field(
+    _: int = field(
         init=False,
         default=0,
         metadata=dict(name="FRQ", type=XmlType.ATTRIBUTE, required=True),

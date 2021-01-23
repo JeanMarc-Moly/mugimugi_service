@@ -4,6 +4,7 @@ from typing import Iterator, Union
 
 from ..enum import ElementPrefix, Language
 from ..enum.element_node import ElementNode
+from .abstract import Element
 from .converter import Percent
 from .item import (
     LinkedPartialAuthor,
@@ -19,7 +20,7 @@ from .item import (
     LinkedPartialType,
 )
 from .item.abstract import Item
-from .root import ManyNamesElement, ValidRoot, XmlType
+from .root import ValidRoot, XmlType
 
 LI = Union[
     LinkedPartialAuthor,
@@ -58,6 +59,7 @@ class Book(ManyNamesElement):
             pattern=fr"{ElementPrefix.BOOK.value}\d+",
         ),
     )
+    prefix: ElementPrefix = ElementPrefix.BOOK
     version: int = field(
         default=None,
         metadata=dict(

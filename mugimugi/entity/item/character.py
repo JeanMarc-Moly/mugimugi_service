@@ -3,6 +3,7 @@ from enum import Enum
 from typing import Iterator
 
 from ...enum import Ratio, Sex
+from ..abstract import Element
 from ..root import ValidRoot, XmlType
 from .abstract import (
     AbstractLinker,
@@ -25,11 +26,11 @@ class Linker(AbstractLinker[LinkedContent]):
 
 
 @dataclass
-class AbstractCharacter:
+class AbstractCharacter(Element):
     class Type(Enum):
         TYPE = ItemType.CHARACTER
 
-    id: str = field(
+    _id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -43,6 +44,8 @@ class AbstractCharacter:
         default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
+    prefix: ElementPrefix = ElementPrefix.CHARACTER
+    type: ItemType = ItemType.CHARACTER
     sex: Sex = field(
         default=None,
         metadata=dict(
@@ -58,16 +61,16 @@ class AbstractCharacter:
         metadata=dict(name="DATA_AGE", type=XmlType.ELEMENT, required=True),
     )
 
-    @property
-    def contents(self) -> Iterator[LinkedContent]:
-        yield from self.items
-
 
 @dataclass
 class Character(AbstractCharacter, LinkableItem[LinkedContent]):
     _links: Linker = field(
         default=None, metadata=dict(name="LINKS", type=XmlType.ELEMENT, min_occurs=0)
     )
+
+    @property
+    def contents(self) -> Iterator[LinkedContent]:
+        yield from self._links.items
 
 
 @dataclass

@@ -3,6 +3,7 @@ from enum import Enum
 from typing import Iterator, Union
 
 from ...enum import Position
+from ..abstract import Element
 from ..root import ValidRoot, XmlType
 from .abstract import (
     AbstractLinker,
@@ -27,11 +28,11 @@ class Linker(AbstractLinker[LI]):
 
 
 @dataclass
-class AbstractCircle:
+class AbstractCircle(Element):
     class Type(Enum):
         TYPE = ItemType.CIRCLE
 
-    id: str = field(
+    _id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -45,6 +46,8 @@ class AbstractCircle:
         default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
+    prefix: ElementPrefix = ElementPrefix.CIRCLE
+    type: ItemType = ItemType.CIRCLE
     parent: int = field(
         default=None,
         metadata=dict(
@@ -52,24 +55,26 @@ class AbstractCircle:
         ),
     )
 
-    @property
-    def contents(self) -> Iterator[LinkedContent]:
-        for e in self.items:
-            if e.type is ItemType.CONTENT:
-                yield e
-
-    @property
-    def authors(self) -> Iterator[LinkedAuthor]:
-        for e in self.items:
-            if e.type is ItemType.AUTHOR:
-                yield e
-
 
 @dataclass
 class Circle(AbstractCircle, LinkableItem[LI]):
     _links: Linker = field(
         default=None, metadata=dict(name="LINKS", type=XmlType.ELEMENT, min_occurs=0)
     )
+
+    @property
+    def contents(self) -> Iterator[LinkedContent]:
+        type_ = ItemType.CONTENT
+        for e in self._links.items:
+            if e.type is type_:
+                yield e
+
+    @property
+    def contents(self) -> Iterator[LinkedAuthor]:
+        type_ = ItemType.AUTHOR
+        for e in self._links.items:
+            if e.type is type_:
+                yield e
 
 
 @dataclass
