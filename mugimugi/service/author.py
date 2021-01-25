@@ -1,6 +1,6 @@
-from ..entity.main import Author as Entity
 from typing import ClassVar, Type
 
+from ..entity.main import Author as Entity
 from ..entity.root import AuthorRoot
 from ..enum import ElementPrefix
 from .abstract import ItemType

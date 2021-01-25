@@ -1,10 +1,9 @@
 from dataclasses import dataclass
 from typing import ClassVar, Generic, Iterator, Optional, Type, TypeVar
 
-from ..entity.root import AbstractRoot
-
 from ..action import AbstractAction, AbstractPaginatedAction
 from ..client import Client
+from ..entity.root import AbstractRoot
 from ..enum import ElementPrefix, ItemType
 
 E = TypeVar("E", bound=AbstractRoot)

@@ -3,10 +3,10 @@ from datetime import date
 from typing import AsyncIterator, ClassVar, Coroutine, Iterator, Optional, Type
 
 from ..action import SearchItem
+from ..entity.main import Convention as Entity
 from ..entity.root import ConventionRoot
 from ..enum import ElementPrefix, ItemType, SortOrder
 from .abstract_item import Item
-from ..entity.main import Convention as Entity
 
 
 class Convention(Item[ConventionRoot, Entity]):

@@ -1,3 +1,4 @@
+from .abstract_item import Item
 from .author import Author
 from .book import Book
 from .character import Character
@@ -11,4 +12,3 @@ from .imprint import Imprint
 from .parody import Parody
 from .publisher import Publisher
 from .user import User
-from .abstract_item import Item

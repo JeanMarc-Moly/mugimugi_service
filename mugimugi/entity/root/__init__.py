@@ -1,7 +1,7 @@
+from .abstract import AbstractRoot
 from .empty import EmptyRoot
 from .failed import FailedRoot
 from .valid import (
-    ValidRoot,
     AuthorRoot,
     BookRoot,
     CharacterRoot,
@@ -13,5 +13,5 @@ from .valid import (
     ImprintRoot,
     ParodyRoot,
     PublisherRoot,
+    ValidRoot,
 )
-from .abstract import AbstractRoot

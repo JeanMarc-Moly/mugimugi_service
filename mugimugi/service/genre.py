@@ -1,10 +1,10 @@
 from typing import ClassVar, Type
 
+from ..entity.main import Genre as Entity
 from ..entity.root import GenreRoot
 from ..enum import ElementPrefix
 from .abstract import ItemType
 from .abstract_item import Item
-from ..entity.main import Genre as Entity
 
 
 class Genre(Item[GenreRoot, Entity]):
