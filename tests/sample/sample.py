@@ -14,7 +14,9 @@ class Sample:
 
     def test_parsing(self):
         self.maxDiff = None
-        with (path := self.file_path).open("r") as f:
+        path = self.file_path
+        self.assertTrue(path.exists())
+        with path.open("r") as f:
             self.assertDictEqual(
                 asdict(parse(self.type, f.read())),
                 asdict(self.object),
