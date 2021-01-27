@@ -29,7 +29,7 @@ class AuthorCommon(ItemCommon):
     prefix: ElementPrefix = ElementPrefix.AUTHOR
     type: ItemType = ItemType.AUTHOR
     parent: int = field(
-        default=None,
+        default=0,
         metadata=dict(
             name="PARENT", type=XmlType.ATTRIBUTE, required=True, min_inclusive=0
         ),

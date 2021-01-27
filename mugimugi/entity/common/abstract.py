@@ -21,13 +21,13 @@ class Element:
     prefix: ElementPrefix = None
 
     english_name: str = field(
-        default=None, metadata=dict(name="NAME_EN", type=XmlType.ELEMENT, required=True)
+        default="", metadata=dict(name="NAME_EN", type=XmlType.ELEMENT, required=True)
     )
     japanese_name: str = field(
-        default=None, metadata=dict(name="NAME_JP", type=XmlType.ELEMENT, required=True)
+        default="", metadata=dict(name="NAME_JP", type=XmlType.ELEMENT, required=True)
     )
     romaji_name: str = field(
-        default=None, metadata=dict(name="NAME_R", type=XmlType.ELEMENT, required=True)
+        default="", metadata=dict(name="NAME_R", type=XmlType.ELEMENT, required=True)
     )
     other_names: list[str] = field(
         default_factory=list,
