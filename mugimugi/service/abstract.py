@@ -22,13 +22,16 @@ class AbstractService(Generic[E]):
     async def fetch_all(self, action: AbstractPaginatedAction):
         max_ = self.MAX_PER_PAGE
         parser = self.CONSTRUCTOR.parse
+        query = self._api.query
         action.page = 1
-        while len(elements := parser(await self._api.query(action)).elements) <= max_:
+        while len(elements := parser(await query(action)).elements) <= max_:
             yield elements
             action.page += 1
 
     async def fetch_all_elements(
-        self, action: AbstractPaginatedAction, limit: Optional[int] = None,
+        self,
+        action: AbstractPaginatedAction,
+        limit: Optional[int] = None,
     ) -> Iterator[E]:
         async for page in self.fetch_all(action):
             for elements in page:
@@ -36,7 +39,7 @@ class AbstractService(Generic[E]):
                 if limit and not (limit := limit - 1):
                     return
 
-    async def fetch_elements(self, action: AbstractAction,) -> Iterator[E]:
+    async def fetch_elements(self, action: AbstractAction) -> Iterator[E]:
         for element in self.CONSTRUCTOR.parse.parse(
             await self._api.query(action)
         ).elements:
