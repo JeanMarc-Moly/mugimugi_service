@@ -3,8 +3,10 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - ipython
   - pylint
   - black
-  - jupyter
+  - isort
   - python-dotenv
+  - xeus-python
+  - pip:
+      - doit

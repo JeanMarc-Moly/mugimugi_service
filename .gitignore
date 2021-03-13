@@ -7,5 +7,9 @@ __pycache__/
 .env
 .python_env
 
-.idea/misc.xml
-.idea/workspace.xml
+.idea/*
+!.idea/*.iml
+!.idea/vcs.xml
+!.idea/modules.xml
+
+.doit.*
