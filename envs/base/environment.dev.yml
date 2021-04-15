@@ -1,12 +1,15 @@
 name: importer
 channels:
-  - defaults
+  - defaults # pylint
   - conda-forge
+  - anaconda # graphviz
 dependencies:
   - pylint
+  - graphviz
   - black
   - isort
   - python-dotenv
   - xeus-python
+  - pip
   - pip:
       - doit
