@@ -37,7 +37,7 @@ class Circle(CircleCommon, LinkableItem[LI]):
                 yield e
 
     @property
-    def contents(self) -> Iterator[SubAuthor]:
+    def authors(self) -> Iterator[SubAuthor]:
         type_ = ItemType.AUTHOR
         for e in self._links.items:
             if e.type is type_:
