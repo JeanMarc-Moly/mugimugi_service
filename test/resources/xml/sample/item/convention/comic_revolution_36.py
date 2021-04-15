@@ -2,8 +2,8 @@ from datetime import date
 
 from mugimugi.entity.main.book import Convention
 
-from .......configuration import SAMPLE
-from ....abstract import Sample
+from ......configuration import SAMPLE
+from ...abstract import Sample
 
 
 class BookConventionComicRevolution36(Sample):

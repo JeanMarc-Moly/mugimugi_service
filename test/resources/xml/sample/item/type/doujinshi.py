@@ -1,7 +1,7 @@
 from mugimugi.entity.main.book import Type
 
-from .......configuration import SAMPLE
-from ....abstract import Sample
+from ......configuration import SAMPLE
+from ...abstract import Sample
 
 
 class BookTypeDoujinshi(Sample):

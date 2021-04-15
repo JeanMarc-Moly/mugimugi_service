@@ -2,8 +2,8 @@ from mugimugi.entity.main.book import Character
 from mugimugi.enum import Ratio
 from mugimugi.enum.gender import Sex
 
-from .......configuration import SAMPLE
-from ....abstract import Sample
+from ......configuration import SAMPLE
+from ...abstract import Sample
 
 
 class BookCharacterTosakaRin(Sample):

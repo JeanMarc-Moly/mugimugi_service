@@ -1,7 +1,7 @@
 from mugimugi.entity.main.book import Collection
 
-from .......configuration import SAMPLE
-from ....abstract import Sample
+from ......configuration import SAMPLE
+from ...abstract import Sample
 
 
 class BookCollectionDLAction(Sample):

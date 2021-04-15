@@ -1,8 +1,8 @@
 from mugimugi.entity.main.book import Circle
 from mugimugi.enum.position import Position
 
-from .......configuration import SAMPLE
-from ....abstract import Sample
+from ......configuration import SAMPLE
+from ...abstract import Sample
 
 
 class BookCircleDigitalLover(Sample):

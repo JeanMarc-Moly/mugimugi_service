@@ -1,8 +1,8 @@
 from mugimugi.entity.main.book import Parody
 from mugimugi.enum import Ratio
 
-from .......configuration import SAMPLE
-from ....abstract import Sample
+from ......configuration import SAMPLE
+from ...abstract import Sample
 
 
 class BookParodyFateStayNight(Sample):
