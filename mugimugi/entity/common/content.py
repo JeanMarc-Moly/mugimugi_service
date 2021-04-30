@@ -12,7 +12,7 @@ class ContentCommon(ItemCommon):
     class Type(Enum):
         TYPE = ItemType.CONTENT
 
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -28,3 +28,8 @@ class ContentCommon(ItemCommon):
     )
     prefix: ElementPrefix = ElementPrefix.CONTENT
     type: ItemType = ItemType.CONTENT
+
+    @classmethod
+    @property
+    def PREFIX(self) -> ElementPrefix:
+        return ElementPrefix.CONTENT

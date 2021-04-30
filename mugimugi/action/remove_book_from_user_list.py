@@ -8,3 +8,7 @@ from .abstract_user_list import AbstractUserListAction
 @dataclass
 class RemoveBookFromUserList(AbstractUserListAction):
     ACTION: ClassVar[Action] = Action.REMOVE_BOOK_FROM_USER_LIST
+
+    @property
+    def action(self) -> Action:
+        return self.ACTION

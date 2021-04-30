@@ -1,8 +1,7 @@
 from dataclasses import dataclass
-from typing import ClassVar, Generic, Iterator, Optional, Type, TypeVar
+from typing import Callable, ClassVar, Generic, Iterator, Optional, Type, TypeVar
 
 from ..action import AbstractAction, AbstractPaginatedAction
-from ..client import Client
 from ..entity.root import AbstractRoot
 from ..enum import ElementPrefix, ItemType
 
@@ -16,15 +15,13 @@ class AbstractService(Generic[E]):
     CONSTRUCTOR: ClassVar[Type[E]]
     # MAX_PER_PAGE: ClassVar[int] = REQUEST_GET_ID_MAX_COUNT
 
-    _api: Client
+    _api: Callable
     # web: Callable
 
     async def fetch_all(self, action: AbstractPaginatedAction):
         max_ = self.MAX_PER_PAGE
-        parser = self.CONSTRUCTOR.parse
-        query = self._api.query
         action.page = 1
-        while len(elements := parser(await query(action)).elements) <= max_:
+        while len(elements := self.query(action)) <= max_:
             yield elements
             action.page += 1
 
@@ -40,7 +37,5 @@ class AbstractService(Generic[E]):
                     return
 
     async def fetch_elements(self, action: AbstractAction) -> Iterator[E]:
-        for element in self.CONSTRUCTOR.parse.parse(
-            await self._api.query(action)
-        ).elements:
+        for element in self.query(action):
             yield element

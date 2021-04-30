@@ -1,13 +1,11 @@
-from typing import ClassVar, Type
+from typing import Iterable
 
+from ..action.get_item_by_id import GetImprintById
 from ..entity.main import Imprint as Entity
-from ..entity.root import ImprintRoot
-from ..enum import ElementPrefix
-from .abstract import ItemType
 from .abstract_item import Item
 
 
-class Imprint(Item[ImprintRoot, Entity]):
-    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.IMPRINT
-    SEARCH_TYPE: ClassVar[ItemType] = ItemType.IMPRINT
-    CONSTRUCTOR: ClassVar[Type] = ImprintRoot
+class Imprint(Item[GetImprintById.Root, Entity]):
+    @classmethod
+    def _get(self, ids: Iterable[int]) -> GetImprintById.Root:
+        return GetImprintById(ids)

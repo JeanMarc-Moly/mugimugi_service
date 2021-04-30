@@ -8,3 +8,7 @@ from .abstract_user_list import AbstractUserListAction
 @dataclass
 class AddBookToUserList(AbstractUserListAction):
     ACTION: ClassVar[Action] = Action.ADD_BOOK_TO_USER_LIST
+
+    @property
+    def action(self) -> Action:
+        return self.ACTION

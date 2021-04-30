@@ -13,7 +13,7 @@ class ConventionCommon(ItemCommon):
     class Type(Enum):
         TYPE = ItemType.CONVENTION
 
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -41,3 +41,8 @@ class ConventionCommon(ItemCommon):
             name="DATE_END", type=XmlType.ELEMENT, required=True, format="%Y-%m-%d"
         ),
     )
+
+    @classmethod
+    @property
+    def PREFIX(self) -> ElementPrefix:
+        return ElementPrefix.CONVENTION

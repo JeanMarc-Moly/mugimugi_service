@@ -12,7 +12,7 @@ class CircleCommon(ItemCommon):
     class Type(Enum):
         TYPE = ItemType.CIRCLE
 
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -34,3 +34,8 @@ class CircleCommon(ItemCommon):
             name="PARENT", type=XmlType.ATTRIBUTE, required=True, min_inclusive=0
         ),
     )
+
+    @classmethod
+    @property
+    def PREFIX(self) -> ElementPrefix:
+        return ElementPrefix.CIRCLE

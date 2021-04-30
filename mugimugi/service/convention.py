@@ -1,18 +1,18 @@
 from contextlib import suppress
 from datetime import date
-from typing import AsyncIterator, ClassVar, Coroutine, Iterator, Optional, Type
+from typing import AsyncIterator, Coroutine, Iterable, Iterator, Optional
 
 from ..action import SearchItem
+from ..action.get_item_by_id import GetConventionById
 from ..entity.main import Convention as Entity
-from ..entity.root import ConventionRoot
-from ..enum import ElementPrefix, ItemType, SortOrder
+from ..enum import SortOrder
 from .abstract_item import Item
 
 
-class Convention(Item[ConventionRoot, Entity]):
-    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.CONVENTION
-    SEARCH_TYPE: ClassVar[ItemType] = ItemType.CONVENTION
-    CONSTRUCTOR: ClassVar[Type] = ConventionRoot
+class Convention(Item[GetConventionById.Root, Entity]):
+    @classmethod
+    def _get(self, ids: Iterable[int]) -> GetConventionById.Root:
+        return GetConventionById(ids)
 
     async def search(
         self,
@@ -23,7 +23,7 @@ class Convention(Item[ConventionRoot, Entity]):
         sort_criterion: Optional[SearchItem.SortCriterion] = None,
         sort_order: Optional[SortOrder] = None,
         limit: Optional[int] = 0,
-    ) -> AsyncIterator[ConventionRoot]:
+    ) -> AsyncIterator[GetConventionById.Root]:  # TODO change when defined for search
         with suppress(StopIteration):
             parse = self.CONSTRUCTOR.parse
             pages = self.search_pages(

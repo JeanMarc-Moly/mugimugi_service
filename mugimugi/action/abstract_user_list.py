@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from abc import ABC
 from dataclasses import dataclass
 from enum import Enum
 from typing import ClassVar, Iterable, Iterator, TypeVar, Union
@@ -8,16 +9,14 @@ from ..configuration import REQUEST_EDIT_LIST_MAX_COUNT
 from ..enum import ElementNode
 from .abstract import AbstractAction
 
-
-class Parameter(Enum):
-    ID = "ID"
-
-
 T = TypeVar("T", bound="AbstractUserListAction")
 
 
 @dataclass
-class AbstractUserListAction(AbstractAction):
+class AbstractUserListAction(AbstractAction, ABC):
+    class Parameter(Enum):
+        ID = "ID"
+
     CONTENT_SEPARATOR: ClassVar[str] = ","
     BOOK_ID_PREFIX: ClassVar[str] = ElementNode.BOOK.value
     # Beyond this count, books are ignored.
@@ -28,11 +27,11 @@ class AbstractUserListAction(AbstractAction):
     def __init__(self, books: Iterable[int]):
         self.books = set(books)
 
-    def items(self) -> Iterator[tuple[str, Union[str, int]]]:
-        yield from super().items()
+    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+        yield from super().params()
 
         p = self.BOOK_ID_PREFIX
-        yield Parameter.ID.value, self.CONTENT_SEPARATOR.join(
+        yield self.Parameter.ID.value, self.CONTENT_SEPARATOR.join(
             p + str(b) for b in self.books
         )
 

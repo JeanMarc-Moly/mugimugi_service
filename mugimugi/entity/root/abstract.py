@@ -1,5 +1,8 @@
+from __future__ import annotations
+
 from abc import ABC
 from dataclasses import dataclass
+from typing import TypeVar
 
 from ...enum import ElementNode
 from ..utils.xml import parse
@@ -11,5 +14,8 @@ class AbstractRoot(ABC):
         name = ElementNode.LIST.value
 
     @classmethod
-    def parse(cls, xml: str):
+    def parse(cls: U, xml: str) -> U:
         return parse(cls, xml)
+
+
+U = TypeVar("U", bound=AbstractRoot)

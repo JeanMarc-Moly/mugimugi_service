@@ -3,10 +3,8 @@ from datetime import date
 
 from xsdata.formats.dataclass.models.elements import XmlType
 
-from mugimugi.entity.utils.converter.percent import Percent
-from mugimugi.enum import ElementPrefix, Language
-from mugimugi.enum.element_node import ElementNode
-
+from ...enum import ElementNode, ElementPrefix, Language
+from ..utils.converter.percent import Percent
 from .abstract import Element
 
 
@@ -15,22 +13,24 @@ class BookCommon(Element):
     class Meta:
         name = ElementNode.BOOK.value
 
-    _id: str = field(
+    _PREFIX = ElementPrefix.BOOK
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
             type=XmlType.ATTRIBUTE,
             required=True,
-            pattern=fr"{ElementPrefix.BOOK.value}\d+",
+            pattern=fr"{_PREFIX.value}\d+",
         ),
     )
-    prefix: ElementPrefix = ElementPrefix.BOOK
+    prefix: ElementPrefix = _PREFIX
     version: int = field(
         default=None,
         metadata=dict(
             name="VER", type=XmlType.ATTRIBUTE, required=True, min_inclusive=0
         ),
     )
+    # TODO: maybe not in subclass
     match_ratio: Percent = field(
         default=None,
         metadata=dict(
@@ -75,3 +75,8 @@ class BookCommon(Element):
         default=None,
         metadata=dict(name="DATA_INFO", type=XmlType.ELEMENT, required=True),
     )
+
+    @classmethod
+    @property
+    def PREFIX(cls):
+        return cls._PREFIX

@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from dataclasses import dataclass, field
 from typing import Iterator
 
@@ -8,7 +9,7 @@ from mugimugi.enum import ElementPrefix
 
 @dataclass
 class Element:
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -35,7 +36,7 @@ class Element:
     )
 
     def __post_init__(self):
-        id_ = self._id
+        id_ = self.mugimugi_id
         self.id = int(id_[1:])
         if self.prefix is None:
             self.prefix = ElementPrefix(id_[0])
@@ -51,3 +52,9 @@ class Element:
         for name in self.other_names:
             if name:
                 yield name
+
+    @classmethod
+    @property
+    @abstractmethod
+    def PREFIX(cls) -> ElementPrefix:
+        ...

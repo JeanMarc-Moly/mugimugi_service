@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 from typing import Generic, TypeVar
 
-from mugimugi.entity.root import EmptyRoot
+from ...common.abstract import Element
+from ..empty import EmptyRoot
 
-E = TypeVar("E")
+E = TypeVar("E", bound=Element)
 
 
 @dataclass

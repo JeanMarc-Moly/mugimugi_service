@@ -28,6 +28,10 @@ class SearchItem(AbstractPaginatedAction):
         SORT_CRITERION = "order"  # SortCriterion
         SORT_ORDER = "flow"  # SortOrder
 
+    ACTION: ClassVar[Action] = Action.SEARCH_ITEM
+    CONTENT_SEPARATOR: ClassVar[str] = "|"
+    CONTENT_ASSOCIATION: ClassVar[str] = ":"
+
     type_: ItemType
     title: Optional[str] = None
     page: Optional[int] = None
@@ -36,12 +40,12 @@ class SearchItem(AbstractPaginatedAction):
     sort_criterion: Optional[SortCriterion] = None
     sort_order: Optional[SortOrder] = None
 
-    ACTION: ClassVar[Action] = Action.SEARCH_ITEM
-    CONTENT_SEPARATOR: ClassVar[str] = "|"
-    CONTENT_ASSOCIATION: ClassVar[str] = ":"
+    @property
+    def action(self) -> Action:
+        return self.ACTION
 
-    def items(self) -> Iterator[tuple[str, Union[str, int]]]:
-        yield from super().items()
+    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+        yield from super().params()
 
         p = self.Parameter
 

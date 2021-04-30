@@ -12,7 +12,7 @@ class PublisherCommon(ItemCommon):
     class Type(Enum):
         TYPE = ItemType.PUBLISHER
 
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -28,3 +28,8 @@ class PublisherCommon(ItemCommon):
     )
     prefix: ElementPrefix = ElementPrefix.PUBLISHER
     type: ItemType = ItemType.PUBLISHER
+
+    @classmethod
+    @property
+    def PREFIX(self) -> ElementPrefix:
+        return ElementPrefix.PUBLISHER

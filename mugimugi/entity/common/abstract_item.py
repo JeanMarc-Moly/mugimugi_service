@@ -1,9 +1,9 @@
+from abc import abstractmethod
 from dataclasses import dataclass, field
 
 from xsdata.formats.dataclass.models.elements import XmlType
 
-from mugimugi.enum import ElementNode, ItemType
-
+from ...enum import ElementNode, ElementPrefix, ItemType
 from .abstract import Element
 
 
@@ -33,3 +33,9 @@ class ItemCommon(Element):
         super().__post_init__()
         if self.type is None:
             self.type = self._type.value
+
+    @classmethod
+    @property
+    @abstractmethod
+    def PREFIX(self) -> ElementPrefix:
+        ...

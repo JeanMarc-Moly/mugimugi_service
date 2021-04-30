@@ -2,28 +2,21 @@ from asyncio import run
 from contextlib import suppress
 from dataclasses import dataclass
 from datetime import date
-from typing import (
-    AsyncIterator,
-    ClassVar,
-    Coroutine,
-    Iterable,
-    Iterator,
-    Optional,
-    Type,
-)
+from typing import AsyncIterator, Coroutine, Iterable, Iterator, Optional
 
+from ..action.get_item_by_id import GetBookById
 from ..action.search_object import SearchObject
 from ..entity.main import Book as Entity
-from ..entity.root import BookRoot
-from ..enum import ElementPrefix, ObjectType, SortOrder, YesNo
+from ..enum import ObjectType, SortOrder, YesNo
 from .abstract import AbstractService
 from .abstract_getter import Getter
 
 
 @dataclass
-class Book(AbstractService[BookRoot], Getter[Entity]):
-    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.BOOK
-    CONSTRUCTOR: ClassVar[Type] = BookRoot
+class Book(AbstractService[GetBookById.Root], Getter[Entity]):
+    @classmethod
+    def _get(self, ids: Iterable[int]) -> GetBookById.Root:
+        return GetBookById(ids)
 
     async def search(
         self,
@@ -210,14 +203,14 @@ class Book(AbstractService[BookRoot], Getter[Entity]):
             while paginated_action := action.send(response):
                 response = yield query(paginated_action)
 
-    def vote(**kwargs) -> AsyncIterator[Entity]:
+    def vote(self, **kwargs) -> AsyncIterator[Entity]:
         raise Exception("Not Implemented")
 
-    def add(**kwargs) -> Entity:
+    def add(self, **kwargs) -> Entity:
         raise Exception("Not Implemented")
 
-    def edit(**kwargs) -> Entity:
+    def edit(self, **kwargs) -> Entity:
         raise Exception("Not Implemented")
 
-    def delete(**kwargs) -> Entity:
+    def delete(self, **kwargs) -> Entity:
         raise Exception("Not Implemented")

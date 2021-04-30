@@ -12,7 +12,7 @@ class TypeCommon(ItemCommon):
     class Type(Enum):
         TYPE = ItemType.TYPE
 
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",

@@ -14,7 +14,7 @@ class CharacterCommon(ItemCommon):
     class Type(Enum):
         TYPE = ItemType.CHARACTER
 
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -44,3 +44,8 @@ class CharacterCommon(ItemCommon):
         default=None,
         metadata=dict(name="DATA_AGE", type=XmlType.ELEMENT, required=True),
     )
+
+    @classmethod
+    @property
+    def PREFIX(self) -> ElementPrefix:
+        return ElementPrefix.CHARACTER

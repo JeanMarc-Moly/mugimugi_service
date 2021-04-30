@@ -12,7 +12,7 @@ class ParodyCommon(ItemCommon):
     class Type(Enum):
         TYPE = ItemType.PARODY
 
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -28,3 +28,8 @@ class ParodyCommon(ItemCommon):
     )
     prefix: ElementPrefix = ElementPrefix.PARODY
     type: ItemType = ItemType.PARODY
+
+    @classmethod
+    @property
+    def PREFIX(self) -> ElementPrefix:
+        return ElementPrefix.PARODY

@@ -1,13 +1,11 @@
-from typing import ClassVar, Type
+from typing import Iterable
 
+from ..action.get_item_by_id import GetCharacterById
 from ..entity.main import Character as Entity
-from ..entity.root import CharacterRoot
-from ..enum import ElementPrefix
-from .abstract import ItemType
 from .abstract_item import Item
 
 
-class Character(Item[CharacterRoot, Entity]):
-    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.CHARACTER
-    SEARCH_TYPE: ClassVar[ItemType] = ItemType.CHARACTER
-    CONSTRUCTOR: ClassVar[Type] = CharacterRoot
+class Character(Item[GetCharacterById.Root, Entity]):
+    @classmethod
+    def _get(self, ids: Iterable[int]) -> GetCharacterById.Root:
+        return GetCharacterById(ids)

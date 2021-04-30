@@ -1,13 +1,11 @@
-from typing import ClassVar, Type
+from typing import Iterable
 
+from ..action.get_item_by_id import GetAuthorById
 from ..entity.main import Author as Entity
-from ..entity.root import AuthorRoot
-from ..enum import ElementPrefix
-from .abstract import ItemType
 from .abstract_item import Item
 
 
-class Author(Item[AuthorRoot, Entity]):
-    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.AUTHOR
-    SEARCH_TYPE: ClassVar[ItemType] = ItemType.AUTHOR
-    CONSTRUCTOR: ClassVar[Type] = AuthorRoot
+class Author(Item[GetAuthorById.Root, Entity]):
+    @classmethod
+    def _get(self, ids: Iterable[int]) -> GetAuthorById.Root:
+        return GetAuthorById(ids)

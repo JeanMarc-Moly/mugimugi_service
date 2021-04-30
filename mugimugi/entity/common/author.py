@@ -12,7 +12,7 @@ class AuthorCommon(ItemCommon):
     class Type(Enum):
         TYPE = ItemType.AUTHOR
 
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -26,7 +26,6 @@ class AuthorCommon(ItemCommon):
         default=Type.TYPE,
         metadata=dict(name="TYPE", type=XmlType.ATTRIBUTE, required=True),
     )
-    prefix: ElementPrefix = ElementPrefix.AUTHOR
     type: ItemType = ItemType.AUTHOR
     parent: int = field(
         default=0,
@@ -34,3 +33,8 @@ class AuthorCommon(ItemCommon):
             name="PARENT", type=XmlType.ATTRIBUTE, required=True, min_inclusive=0
         ),
     )
+
+    @classmethod
+    @property
+    def PREFIX(self) -> ElementPrefix:
+        return ElementPrefix.AUTHOR

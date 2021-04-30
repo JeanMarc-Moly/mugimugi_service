@@ -1,13 +1,11 @@
-from typing import ClassVar, Type
+from typing import Iterable
 
+from ..action.get_item_by_id import GetPublisherById
 from ..entity.main import Publisher as Entity
-from ..entity.root import PublisherRoot
-from ..enum import ElementPrefix
-from .abstract import ItemType
 from .abstract_item import Item
 
 
-class Publisher(Item[PublisherRoot, Entity]):
-    ID_TYPE: ClassVar[ElementPrefix] = ElementPrefix.PUBLISHER
-    SEARCH_TYPE: ClassVar[ItemType] = ItemType.PUBLISHER
-    CONSTRUCTOR: ClassVar[Type] = PublisherRoot
+class Publisher(Item[GetPublisherById.Root, Entity]):
+    @classmethod
+    def _get(self, ids: Iterable[int]) -> GetPublisherById.Root:
+        return GetPublisherById(ids)

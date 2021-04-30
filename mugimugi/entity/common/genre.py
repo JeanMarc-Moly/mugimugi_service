@@ -12,7 +12,7 @@ class GenreCommon(ItemCommon):
     class Type(Enum):
         TYPE = ItemType.GENRE
 
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -28,3 +28,8 @@ class GenreCommon(ItemCommon):
     )
     prefix: ElementPrefix = ElementPrefix.GENRE
     type: ItemType = ItemType.GENRE
+
+    @classmethod
+    @property
+    def PREFIX(self) -> ElementPrefix:
+        return ElementPrefix.GENRE

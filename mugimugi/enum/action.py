@@ -1,8 +1,7 @@
 from enum import Enum
 
 
-# noinspection SpellCheckingInspection
-class Action(Enum):
+class Action(str, Enum):
     ADD_BOOK_TO_USER_LIST = "adduserlist"
     REMOVE_BOOK_FROM_USER_LIST = "deluserlist"
     GET_ITEMS_BY_ID = "getID"

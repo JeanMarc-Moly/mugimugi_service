@@ -12,7 +12,7 @@ class CollectionCommon(ItemCommon):
     class Type(Enum):
         TYPE = ItemType.COLLECTION
 
-    _id: str = field(
+    mugimugi_id: str = field(
         default=None,
         metadata=dict(
             name="ID",
@@ -28,3 +28,8 @@ class CollectionCommon(ItemCommon):
     )
     prefix: ElementPrefix = ElementPrefix.COLLECTION
     type: ItemType = ItemType.COLLECTION
+
+    @classmethod
+    @property
+    def PREFIX(self) -> ElementPrefix:
+        return ElementPrefix.COLLECTION
