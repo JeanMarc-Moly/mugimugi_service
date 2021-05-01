@@ -22,5 +22,5 @@ class GetGenreById(GetItemById):
 
     @classmethod
     @property
-    def PREFIX(self) -> ElementPrefix:
+    def PREFIX(cls) -> ElementPrefix:
         return Genre.PREFIX

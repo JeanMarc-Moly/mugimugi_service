@@ -37,5 +37,5 @@ class ItemCommon(Element):
     @classmethod
     @property
     @abstractmethod
-    def PREFIX(self) -> ElementPrefix:
+    def PREFIX(cls) -> ElementPrefix:
         ...

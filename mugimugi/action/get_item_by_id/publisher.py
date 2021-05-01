@@ -22,5 +22,5 @@ class GetPublisherById(GetItemById):
 
     @classmethod
     @property
-    def PREFIX(self) -> ElementPrefix:
+    def PREFIX(cls) -> ElementPrefix:
         return Publisher.PREFIX

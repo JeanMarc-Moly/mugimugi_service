@@ -31,5 +31,5 @@ class ContentCommon(ItemCommon):
 
     @classmethod
     @property
-    def PREFIX(self) -> ElementPrefix:
+    def PREFIX(cls) -> ElementPrefix:
         return ElementPrefix.CONTENT

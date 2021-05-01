@@ -22,5 +22,5 @@ class GetParodyById(GetItemById):
 
     @classmethod
     @property
-    def PREFIX(self) -> ElementPrefix:
+    def PREFIX(cls) -> ElementPrefix:
         return Parody.PREFIX
