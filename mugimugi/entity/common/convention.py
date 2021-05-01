@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
-from datetime import date
 from enum import Enum
+from ..utils.converter import Date
 
 from xsdata.formats.dataclass.models.elements import XmlType
 
@@ -29,17 +29,13 @@ class ConventionCommon(ItemCommon):
     )
     prefix: ElementPrefix = ElementPrefix.CONVENTION
     type: ItemType = ItemType.CONVENTION
-    date_start: date = field(
+    date_start: Date = field(
         default=None,
-        metadata=dict(
-            name="DATE_START", type=XmlType.ELEMENT, required=True, format="%Y-%m-%d"
-        ),
+        metadata=dict(name="DATE_START", type=XmlType.ELEMENT, required=True),
     )
-    date_end: date = field(
+    date_end: Date = field(
         default=None,
-        metadata=dict(
-            name="DATE_END", type=XmlType.ELEMENT, required=True, format="%Y-%m-%d"
-        ),
+        metadata=dict(name="DATE_END", type=XmlType.ELEMENT, required=True),
     )
 
     @classmethod
