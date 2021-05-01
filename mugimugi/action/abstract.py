@@ -49,7 +49,7 @@ class AbstractAction:
 
     def parse(self, r: Response) -> str:
         content = r.text
-        print(content)
+
         if (status := r.status_code) != codes.OK:
             raise Exception(f"Error {codes(status)} ({status}): {content}")
 
