@@ -31,7 +31,7 @@ class AbstractActionByChunk(AbstractAction):
     @classmethod
     @property
     @abstractmethod
-    def PREFIX(self) -> ElementPrefix:
+    def PREFIX(cls) -> ElementPrefix:
         ...
 
     def params(self) -> Iterator[tuple[str, Union[str, int]]]:
