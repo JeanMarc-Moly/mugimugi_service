@@ -17,15 +17,15 @@ class ItemCommon(Element):
     )
     type: ItemType = None
     version: int = field(
-        default=None,
+        default=1,
         metadata=dict(
-            name="VER", type=XmlType.ATTRIBUTE, required=True, min_inclusive=0
+            name="VER", type=XmlType.ATTRIBUTE, required=True, min_inclusive=1
         ),
     )
     objects_count: int = field(
-        default=None,
+        default=1,
         metadata=dict(
-            name="OBJECTS", type=XmlType.ELEMENT, required=True, min_inclusive=0
+            name="OBJECTS", type=XmlType.ELEMENT, required=True, min_inclusive=1
         ),
     )
 
