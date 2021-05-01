@@ -15,4 +15,4 @@ def parse(cls, xml: str):
             simplefilter("ignore")
             return PARSER(xml, cls)
     except ParserError as e:
-        raise TypeError(f"Failed to parse: {e}")
+        raise TypeError(f"{e} in \n{xml}") from e
