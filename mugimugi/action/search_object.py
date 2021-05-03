@@ -5,6 +5,7 @@ from typing import ClassVar, Iterable, Iterator, Optional, Union
 
 from ..enum import Action, ElementPrefix, ObjectType, SortOrder, YesNo
 from .abstract_paginated import AbstractPaginatedAction
+from ..entity.utils.converter import Date
 
 
 @dataclass
@@ -122,10 +123,10 @@ class SearchObject(AbstractPaginatedAction):
             yield p.TYPE.value, object_type.value
 
         if date_from := self.date_from:
-            yield p.RELEASE_DATE_FROM.value, f"{date_from:%Y-%m-%d}"
+            yield p.RELEASE_DATE_FROM.value, f"{date_from:Date.FORMAT}"
 
         if date_to := self.date_to:
-            yield p.RELEASE_DATE_TO.value, f"{date_to:%Y-%m-%d}"
+            yield p.RELEASE_DATE_TO.value, f"{date_to:Date.FORMAT}"
 
         if sort_criterion := self.sort_criterion:
             yield p.SORT_CRITERION.value, sort_criterion.value
