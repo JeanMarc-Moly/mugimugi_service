@@ -2,12 +2,12 @@ from asyncio import run
 from contextlib import suppress
 from dataclasses import dataclass
 from datetime import date
-from typing import AsyncIterator, Coroutine, Iterable, Iterator, Optional
+from typing import Coroutine, Iterable, Iterator, Optional
 
-from ..action.get_item_by_id import GetBookById
-from ..action.search_object import SearchObject
+from ..entity.root import UpdateRoot
+from ..action import GetBookById, SearchObject, Vote
 from ..entity.main import Book as Entity
-from ..enum import ObjectType, SortOrder, YesNo
+from ..enum import ObjectType, SortOrder, YesNo, Score
 from .abstract import AbstractService
 from .abstract_getter import Getter
 
@@ -203,8 +203,8 @@ class Book(AbstractService, Getter[Entity]):
             while paginated_action := action.send(response):
                 response = yield query(paginated_action)
 
-    def vote(self, **kwargs) -> AsyncIterator[Entity]:
-        raise Exception("Not Implemented")
+    async def vote(self, score: Score, *ids: int) -> UpdateRoot.Update:
+        return (await Vote(ids, score).query_one(self._api)).update
 
     def add(self, **kwargs) -> Entity:
         raise Exception("Not Implemented")

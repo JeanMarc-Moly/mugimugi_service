@@ -1,5 +1,6 @@
-from dataclasses import InitVar, dataclass
+from dataclasses import dataclass
 from enum import Enum
+from ..entity.root.update import UpdateRoot
 from typing import ClassVar, Iterable, Iterator, Union
 
 from ..configuration import REQUEST_VOTE_MAX_COUNT
@@ -16,8 +17,11 @@ class Vote(AbstractActionByChunk):
     _ACTION: ClassVar[Action] = Action.VOTE
     _CHUNK_SIZE: ClassVar[int] = REQUEST_VOTE_MAX_COUNT
 
-    book_ids: InitVar[Iterable[int]]
     score: Score
+
+    def __init__(self, ids: Iterable[int], score: Score):
+        self.score = score
+        super().__init__(UpdateRoot, ids)
 
     @classmethod
     @property
