@@ -38,7 +38,7 @@ class AbstractActionByChunk(AbstractAction):
         yield from super().params()
         r = self.PREFIX.value
 
-        yield self.Parameter.ID.value, self.IDS_SEPARATOR.join(
+        yield AbstractActionByChunk.Parameter.ID.value, self.IDS_SEPARATOR.join(
             f"{r}{id_}" for id_ in self.ids
         )
 
