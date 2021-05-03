@@ -136,45 +136,44 @@ class SearchObject(AbstractPaginatedAction):
             yield p.SORT_ORDER.value, sort_order.value
 
         a = self.CONTENT_ASSOCIATION
-        s = self.CONTENT_SEPARATOR
         i = ElementPrefix
-        content = ""
+        query = []
 
-        if (circles := self.circles) and (circles := set(circles)):
+        if circles := self.circles:
             t = i.CIRCLE.value
-            content += s.join(f"{t}{a}{c}" for c in circles)
+            query.extend(f"{t}{a}{c}" for c in set(circles))
 
-        if (authors := self.authors) and (authors := set(authors)):
+        if authors := self.authors:
             t = i.AUTHOR.value
-            content += s.join(f"{t}{a}{c}" for c in authors)
+            query.extend(f"{t}{a}{c}" for c in set(authors))
 
-        if (parodies := self.parodies) and (parodies := set(parodies)):
+        if parodies := self.parodies:
             t = i.PARODY.value
-            content += s.join(f"{t}{a}{c}" for c in parodies)
+            query.extend(f"{t}{a}{c}" for c in set(parodies))
 
-        if (characters := self.characters) and (characters := set(characters)):
+        if characters := self.characters:
             t = i.CHARACTER.value
-            content += s.join(f"{t}{a}{c}" for c in characters)
+            query.extend(f"{t}{a}{c}" for c in set(characters))
 
-        if (contents := self.contents) and (contents := set(contents)):
+        if contents := self.contents:
             t = i.CONTENT.value
-            content += s.join(f"{t}{a}{c}" for c in contents)
+            query.extend(f"{t}{a}{c}" for c in set(contents))
 
-        if (genres := self.genres) and (genres := set(genres)):
+        if genres := self.genres:
             t = i.GENRE.value
-            content += s.join(f"{t}{a}{c}" for c in genres)
+            query.extend(f"{t}{a}{c}" for c in set(genres))
 
         if convention := self.convention:
-            content += f"{i.CONVENTION.value}{a}{convention}"
+            query.append(f"{i.CONVENTION.value}{a}{convention}")
 
         if collection := self.collection:
-            content += f"{i.COLLECTION.value}{a}{collection}"
+            query.append(f"{i.COLLECTION.value}{a}{collection}")
 
         if publisher := self.publisher:
-            content += f"{i.PUBLISHER.value}{a}{publisher}"
+            query.append(f"{i.PUBLISHER.value}{a}{publisher}")
 
         if imprint := self.imprint:
-            content += f"{i.IMPRINT.value}{a}{imprint}"
+            query.append(f"{i.IMPRINT.value}{a}{imprint}")
 
-        if content:
-            yield p.CONTENT.value, content
+        if query:
+            yield p.CONTENT.value, self.CONTENT_SEPARATOR.join(query)
