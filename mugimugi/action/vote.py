@@ -12,7 +12,7 @@ class Vote(AbstractActionByChunk):
     class Parameter(Enum):
         SCORE = "score"  # Score
 
-    ACTION: ClassVar[Action] = Action.VOTE
+    _ACTION: ClassVar[Action] = Action.VOTE
     MAX_QUERY: ClassVar[int] = REQUEST_VOTE_MAX_COUNT
 
     book_ids: InitVar[Iterable[int]]
@@ -22,9 +22,10 @@ class Vote(AbstractActionByChunk):
         self.ids = set((ElementPrefix.BOOK, id_) for id_ in book_ids)
         super().__post_init__()
 
+    @classmethod
     @property
-    def action(self) -> Action:
-        return self.ACTION
+    def ACTION(cls) -> Action:
+        return cls._ACTION
 
     @property
     def chunk_size(self) -> int:

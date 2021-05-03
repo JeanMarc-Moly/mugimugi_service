@@ -57,7 +57,7 @@ class SearchObject(AbstractPaginatedAction):
         # ex: &slist=C:Electro|K:Swimsuit|P:Moetan
         CONTENT = "slist"
 
-    ACTION: ClassVar[Action] = Action.SEARCH_OBJECT
+    _ACTION: ClassVar[Action] = Action.SEARCH_OBJECT
     CONTENT_SEPARATOR: ClassVar[str] = "|"
     CONTENT_ASSOCIATION: ClassVar[str] = ":"
 
@@ -86,9 +86,10 @@ class SearchObject(AbstractPaginatedAction):
     sort_criterion: Optional[SortCriterion] = None
     sort_order: Optional[SortOrder] = None
 
+    @classmethod
     @property
-    def action(self) -> Action:
-        return self.ACTION
+    def ACTION(cls) -> Action:
+        return cls._ACTION
 
     def params(self) -> Iterator[tuple[str, Union[str, int]]]:
         yield from super().params()
