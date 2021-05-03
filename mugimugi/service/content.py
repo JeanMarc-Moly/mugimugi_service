@@ -7,5 +7,5 @@ from .abstract_item import Item
 
 class Content(Item[GetContentById.Root, Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetContentById.Root:
+    def _get(self, ids: Iterable[int]) -> GetContentById:
         return GetContentById(ids)

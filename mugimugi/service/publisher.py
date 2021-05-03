@@ -7,5 +7,5 @@ from .abstract_item import Item
 
 class Publisher(Item[GetPublisherById.Root, Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetPublisherById.Root:
+    def _get(self, ids: Iterable[int]) -> GetPublisherById:
         return GetPublisherById(ids)

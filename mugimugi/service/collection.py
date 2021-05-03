@@ -7,5 +7,5 @@ from .abstract_item import Item
 
 class Collection(Item[GetCollectionById.Root, Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetCollectionById.Root:
+    def _get(self, ids: Iterable[int]) -> GetCollectionById:
         return GetCollectionById(ids)

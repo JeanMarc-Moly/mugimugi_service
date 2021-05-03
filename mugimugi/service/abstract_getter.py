@@ -29,5 +29,7 @@ class Getter(Generic[EI]):
 
     @classmethod
     @abstractmethod
-    def _get(self, ids: Iterable[int]):
+    def _get(
+        self, ids: Iterable[int]
+    ) -> TypeVar("AbstractGetItemById", bound=GetItemById):
         ...

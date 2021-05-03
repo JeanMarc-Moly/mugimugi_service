@@ -15,7 +15,7 @@ from .abstract_getter import Getter
 @dataclass
 class Book(AbstractService[GetBookById.Root], Getter[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetBookById.Root:
+    def _get(self, ids: Iterable[int]) -> GetBookById:
         return GetBookById(ids)
 
     async def search(

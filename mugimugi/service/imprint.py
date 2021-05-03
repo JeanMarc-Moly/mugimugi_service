@@ -7,5 +7,5 @@ from .abstract_item import Item
 
 class Imprint(Item[GetImprintById.Root, Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetImprintById.Root:
+    def _get(self, ids: Iterable[int]) -> GetImprintById:
         return GetImprintById(ids)

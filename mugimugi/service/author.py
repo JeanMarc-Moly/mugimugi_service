@@ -7,5 +7,5 @@ from .abstract_item import Item
 
 class Author(Item[GetAuthorById.Root, Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetAuthorById.Root:
+    def _get(self, ids: Iterable[int]) -> GetAuthorById:
         return GetAuthorById(ids)

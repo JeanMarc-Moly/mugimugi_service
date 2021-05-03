@@ -11,7 +11,7 @@ from .abstract_item import Item
 
 class Convention(Item[GetConventionById.Root, Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetConventionById.Root:
+    def _get(self, ids: Iterable[int]) -> GetConventionById:
         return GetConventionById(ids)
 
     async def search(
