@@ -5,7 +5,7 @@ from ..entity.main import Character as Entity
 from .abstract_item import Item
 
 
-class Character(Item[GetCharacterById.Root, Entity]):
+class Character(Item[Entity]):
     @classmethod
     def _get(self, ids: Iterable[int]) -> GetCharacterById:
         return GetCharacterById(ids)

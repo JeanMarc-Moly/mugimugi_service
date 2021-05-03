@@ -9,7 +9,7 @@ from ..enum import SortOrder
 from .abstract_item import Item
 
 
-class Convention(Item[GetConventionById.Root, Entity]):
+class Convention(Item[Entity]):
     @classmethod
     def _get(self, ids: Iterable[int]) -> GetConventionById:
         return GetConventionById(ids)

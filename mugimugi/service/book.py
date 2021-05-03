@@ -13,7 +13,7 @@ from .abstract_getter import Getter
 
 
 @dataclass
-class Book(AbstractService[GetBookById.Root], Getter[Entity]):
+class Book(AbstractService, Getter[Entity]):
     @classmethod
     def _get(self, ids: Iterable[int]) -> GetBookById:
         return GetBookById(ids)

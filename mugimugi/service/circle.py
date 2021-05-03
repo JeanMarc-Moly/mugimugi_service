@@ -5,7 +5,7 @@ from ..entity.main import Circle as Entity
 from .abstract_item import Item
 
 
-class Circle(Item[GetCircleById.Root, Entity]):
+class Circle(Item[Entity]):
     @classmethod
     def _get(self, ids: Iterable[int]) -> GetCircleById:
         return GetCircleById(ids)

@@ -5,7 +5,7 @@ from ..entity.main import Genre as Entity
 from .abstract_item import Item
 
 
-class Genre(Item[GetGenreById.Root, Entity]):
+class Genre(Item[Entity]):
     @classmethod
     def _get(self, ids: Iterable[int]) -> GetGenreById:
         return GetGenreById(ids)

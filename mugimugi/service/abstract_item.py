@@ -5,12 +5,12 @@ from typing import Coroutine, Generic, Iterator, Optional
 
 from ..action import SearchItem
 from ..enum import SortOrder
-from .abstract import AbstractService, E
+from .abstract import AbstractService
 from .abstract_getter import EI, Getter
 
 
 @dataclass
-class Item(Generic[E, EI], AbstractService[E], Getter[EI]):
+class Item(Generic[EI], AbstractService, Getter[EI]):
     async def search(
         self,
         title: Optional[str] = None,
@@ -21,7 +21,6 @@ class Item(Generic[E, EI], AbstractService[E], Getter[EI]):
         limit: Optional[int] = 0,
     ) -> Iterator[EI]:
         with suppress(StopIteration):
-            parse = self.CONSTRUCTOR.parse
             pages = self.search_pages(title, contributor, sort_criterion, sort_order)
             page = None
             while page := pages.send(page):

@@ -5,7 +5,7 @@ from ..entity.main import Parody as Entity
 from .abstract_item import Item
 
 
-class Parody(Item[GetParodyById.Root, Entity]):
+class Parody(Item[Entity]):
     @classmethod
     def _get(self, ids: Iterable[int]) -> GetParodyById:
         return GetParodyById(ids)
