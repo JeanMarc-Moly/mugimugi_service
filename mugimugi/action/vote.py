@@ -1,10 +1,11 @@
-from dataclasses import InitVar, dataclass, field
+from dataclasses import InitVar, dataclass
 from enum import Enum
 from typing import ClassVar, Iterable, Iterator, Union
 
 from ..configuration import REQUEST_VOTE_MAX_COUNT
 from ..enum import Action, ElementPrefix, Score
 from .abstract_by_chunk import AbstractActionByChunk
+from ..entity.main import Book
 
 
 @dataclass
@@ -13,23 +14,25 @@ class Vote(AbstractActionByChunk):
         SCORE = "score"  # Score
 
     _ACTION: ClassVar[Action] = Action.VOTE
-    MAX_QUERY: ClassVar[int] = REQUEST_VOTE_MAX_COUNT
+    _CHUNK_SIZE: ClassVar[int] = REQUEST_VOTE_MAX_COUNT
 
     book_ids: InitVar[Iterable[int]]
     score: Score
-
-    def __post_init__(self, book_ids: Iterable[int]):
-        self.ids = set((ElementPrefix.BOOK, id_) for id_ in book_ids)
-        super().__post_init__()
 
     @classmethod
     @property
     def ACTION(cls) -> Action:
         return cls._ACTION
 
+    @classmethod
     @property
-    def chunk_size(self) -> int:
-        return self.MAX_QUERY
+    def CHUNK_SIZE(self) -> int:
+        return self._CHUNK_SIZE
+
+    @classmethod
+    @property
+    def PREFIX(cls) -> ElementPrefix:
+        return Book.PREFIX
 
     def params(self) -> Iterator[tuple[str, Union[str, int]]]:
         yield from super().params()

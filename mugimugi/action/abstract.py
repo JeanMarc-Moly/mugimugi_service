@@ -37,7 +37,7 @@ class AbstractAction:
         yield AbstractAction.Parameter.ACTION.value, self.ACTION.value
 
     async def query_one(self, client: AsyncClient):
-        return self.send_and_parse(self.get_query(client))
+        return await self.send_and_parse(client, self.get_query(client))
 
     async def send_and_parse(self, client: AsyncClient, query: Request):
         return self.parse(await client.send(query))
