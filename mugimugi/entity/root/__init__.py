@@ -1,6 +1,7 @@
 from .abstract import AbstractRoot
 from .empty import EmptyRoot
 from .failed import FailedRoot
+from .update import UpdateRoot
 from .valid import (
     AuthorRoot,
     BookRoot,
