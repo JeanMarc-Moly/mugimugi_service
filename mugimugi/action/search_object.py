@@ -1,6 +1,7 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date
 from enum import Enum
+from mugimugi.entity.root.valid.book import BookRoot
 from typing import ClassVar, Iterable, Iterator, Optional, Union
 
 from ..entity.utils.converter import Date
@@ -60,6 +61,8 @@ class SearchObject(AbstractPaginatedAction):
     _ACTION: ClassVar[Action] = Action.SEARCH_OBJECT
     CONTENT_SEPARATOR: ClassVar[str] = "|"
     CONTENT_ASSOCIATION: ClassVar[str] = ":"
+
+    root: BookRoot = field(default=BookRoot, init=False)
 
     title: Optional[str] = None
     page: Optional[int] = None
