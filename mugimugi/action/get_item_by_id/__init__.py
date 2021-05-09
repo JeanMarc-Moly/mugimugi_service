@@ -1,3 +1,4 @@
+from .abstract import GetItemById
 from .author import GetAuthorById
 from .book import GetBookById
 from .character import GetCharacterById

@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from typing import Iterable
 
 from xsdata.formats.dataclass.models.elements import XmlType
 
@@ -9,6 +8,7 @@ from ...enum.element_prefix import ElementPrefix
 from .abstract import GetItemById
 
 
+@dataclass
 class GetConventionById(GetItemById):
     @dataclass
     class Root(ValidRoot[Convention]):
@@ -19,8 +19,7 @@ class GetConventionById(GetItemById):
             ),
         )
 
-    def __init__(self, ids: Iterable[int]):
-        super().__init__(self.Root, ids)
+    root: Root = field(default=Root, init=False)
 
     @classmethod
     @property
