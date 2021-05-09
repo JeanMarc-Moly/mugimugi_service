@@ -204,7 +204,17 @@ class Book(AbstractService, Getter[Entity]):
                 response = yield query(paginated_action)
 
     async def vote(self, score: Score, *ids: int) -> UpdateRoot.Update:
-        return (await Vote(ids, score).query_one(self._api)).update
+        """
+        :raises:
+            InvalidScore:  TODO: add log for this one, should not be possible here
+            ObjectNotFound:
+        """
+        # can't use 'all' TT
+        async for b in Vote(ids, score).query_bulk_fast(self._api):
+            if not b.is_ok:
+                return False
+        else:
+            return True
 
     def add(self, **kwargs) -> Entity:
         raise Exception("Not Implemented")
