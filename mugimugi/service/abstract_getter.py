@@ -1,11 +1,10 @@
 from abc import abstractmethod
-
 from dataclasses import dataclass
-from ..action.get_item_by_id.abstract import GetItemById
 from typing import Generic, Iterable, Iterator, Optional, TypeVar
 
 from multimethod import multimethod
 
+from ..action.get_item_by_id.abstract import GetItemById
 from ..entity.main import Item
 
 EI = TypeVar("EI", bound=Item)

@@ -4,10 +4,10 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Coroutine, Iterable, Iterator, Optional
 
-from ..entity.root import UpdateRoot
 from ..action import GetBookById, SearchObject, Vote
 from ..entity.main import Book as Entity
-from ..enum import ObjectType, SortOrder, YesNo, Score
+from ..entity.root import UpdateRoot
+from ..enum import ObjectType, Score, SortOrder, YesNo
 from .abstract import AbstractService
 from .abstract_getter import Getter
 

@@ -3,9 +3,9 @@ from datetime import date
 from enum import Enum
 from typing import ClassVar, Iterable, Iterator, Optional, Union
 
+from ..entity.utils.converter import Date
 from ..enum import Action, ElementPrefix, ObjectType, SortOrder, YesNo
 from .abstract_paginated import AbstractPaginatedAction
-from ..entity.utils.converter import Date
 
 
 @dataclass

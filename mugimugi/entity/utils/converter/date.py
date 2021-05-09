@@ -1,5 +1,6 @@
-from typing import Optional, TypeVar
 from datetime import date, datetime
+from typing import Optional, TypeVar
+
 from xsdata.formats.converter import Converter, converter
 
 Date = date

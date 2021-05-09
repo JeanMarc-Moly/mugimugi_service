@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from xsdata.formats.dataclass.models.elements import XmlType
 
 from ...enum import ElementNode, ElementPrefix, Language
-from ..utils.converter import Percent, Date
+from ..utils.converter import Date, Percent
 from .abstract import Element
 
 
