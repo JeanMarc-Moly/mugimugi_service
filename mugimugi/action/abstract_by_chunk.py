@@ -43,6 +43,11 @@ class AbstractActionByChunk(AbstractAction):
         )
 
     async def query_elements_smart(self, client: AsyncClient):
+        for page in self.query_bulk_smart(client):
+            for element in (await page).elements:
+                yield element
+
+    async def query_bulk_smart(self, client: AsyncClient):
         ids = self.ids
         ids_ = set(ids)
         count = max_ = self.CHUNK_SIZE
@@ -52,14 +57,18 @@ class AbstractActionByChunk(AbstractAction):
             result = self.send_and_parse(client, self.get_query(client))
             self.ids = ids
 
-            result = (await result).elements
-            for e in result:
-                yield e
+            yield await result
 
+            result = result.elements
             count = len(result)
             ids_ -= set(e.id for e in result)
 
     async def query_elements_fast(self, client: AsyncClient):
+        for page in self.query_bulk_fast(client):
+            for element in (await page).elements:
+                yield element
+
+    async def query_bulk_fast(self, client: AsyncClient):
         ids = self.ids
         chunk = self.CHUNK_SIZE
 
@@ -69,6 +78,5 @@ class AbstractActionByChunk(AbstractAction):
             results.append(self.send_and_parse(client, self.get_query(client)))
         self.ids = ids
 
-        for page in as_completed(results):
-            for element in (await page).elements:
-                yield element
+        for bulk in as_completed(results):
+            yield await bulk
