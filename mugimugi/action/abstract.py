@@ -6,6 +6,7 @@ from typing import Iterator, TypeVar, Union
 
 from httpx import AsyncClient, Request, Response, codes
 
+from ..configuration import TIMEOUT
 from ..entity.root import FailedRoot, ValidRoot
 from ..enum import Action
 
@@ -20,6 +21,8 @@ class AbstractAction:
     class Method(Enum):
         GET = "GET"
         POST = "POST"
+
+    TIMEOUT = TIMEOUT
 
     root: Root
 
@@ -40,7 +43,7 @@ class AbstractAction:
         return await self.send_and_parse(client, self.get_query(client))
 
     async def send_and_parse(self, client: AsyncClient, query: Request):
-        return self.parse(await client.send(query))
+        return self.parse(await client.send(query, timeout=self.TIMEOUT))
 
     def get_query(self, client: AsyncClient):
         return client.build_request(
