@@ -20,7 +20,7 @@ class AbstractPaginatedAction(AbstractAction, ABC):
 
     def params(self) -> Iterator[tuple[str, Union[str, int]]]:
         yield from super().params()
-        yield self.Parameter.PAGE.value, self.page
+        yield AbstractPaginatedAction.Parameter.PAGE.value, self.page
 
     async def query_elements_fast(self, client: AsyncClient):
         current, swap = 0, self.page
