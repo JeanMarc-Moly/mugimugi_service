@@ -6,7 +6,7 @@ with (Path(__file__).resolve().parent / "README.md").open(encoding="utf-8") as f
 
 setup(
     name="mugimugi",
-    version="0.1.0",
+    version="0.2.0",
     description="Mugimugi api client",
     long_description=long_description,
     long_description_content_type="text/markdown",
