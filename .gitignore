@@ -1,15 +1,10 @@
 
 __pycache__/
 
-# Jupyter Notebook
 .ipynb_checkpoints
 
 .env
-.python_env
+.venv
 
-.idea/*
-!.idea/*.iml
-!.idea/vcs.xml
-!.idea/modules.xml
-
-.doit.*
+.idea/
+.vscode/
