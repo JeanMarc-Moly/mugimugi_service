@@ -28,7 +28,7 @@ class Convention(Item[Entity]):
             contributor=contributor,
             sort_criterion=sort_criterion,
             sort_order=sort_order,
-        )
+        ).query_elements
         async for element in query(self._api):
             yield element
             if not (limit := limit - 1):
