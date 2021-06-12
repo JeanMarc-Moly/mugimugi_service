@@ -10,19 +10,20 @@ Mugimugi (doujinshi.org) api client
 
 # Functionnal
 
-|object    |get|
-|----------|---|
-|author    | × |
-|book      | × |
-|character | × |
-|collection|   |
-|content   |   |
-|convention| × |
-|genre     |   |
-|image     |   |
-|imprint   |   |
-|parody    | × |
-|favorite  |   |
-|publisher |   |
-|type      |   |
-|user      | × |
+|object|get|search|
+|-|-|-|
+|author    |×|×|
+|book      |×|×|
+|character |×|×|
+|circle    |×|×|
+|collection| | |
+|content   | | |
+|convention|×| |
+|genre     | | |
+|image     | | |
+|imprint   | | |
+|parody    |×|×|
+|favorite  | | |
+|publisher | | |
+|type      | | |
+|user      |×|-|
