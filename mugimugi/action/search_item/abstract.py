@@ -1,10 +1,9 @@
 from dataclasses import dataclass
-from datetime import date
 from enum import Enum
 from typing import ClassVar, Iterator, Optional, Union
 
-from ..enum import Action, ItemType, SortOrder
-from .abstract_paginated import AbstractPaginatedAction
+from ...enum import Action, ItemType, SortOrder
+from ..abstract_paginated import AbstractPaginatedAction
 
 
 @dataclass
@@ -32,8 +31,6 @@ class SearchItem(AbstractPaginatedAction):
 
     type_: ItemType
     title: Optional[str] = None
-    page: Optional[int] = None
-    date_: Optional[date] = None
     contributor: Optional[str] = None
     sort_criterion: Optional[SortCriterion] = None
     sort_order: Optional[SortOrder] = None
@@ -53,9 +50,6 @@ class SearchItem(AbstractPaginatedAction):
 
         if (type_ := self.type_) is not None:
             yield p.TYPE.value, type_.value
-
-        if (date_ := self.date_) is not None:
-            yield p.DATE.value, f"{date_:%Y-%m-%d}"
 
         if (contributor := self.contributor) is not None:
             yield p.CONTRIBUTOR.value, contributor

@@ -1,8 +1,9 @@
 from dataclasses import dataclass, field
 from datetime import date
 from enum import Enum
-from mugimugi.entity.root.valid.book import BookRoot
 from typing import ClassVar, Iterable, Iterator, Optional, Union
+
+from mugimugi.entity.root.valid.book import BookRoot
 
 from ..entity.utils.converter import Date
 from ..enum import Action, ElementPrefix, ObjectType, SortOrder, YesNo
