@@ -1,20 +1,43 @@
-from fast_enum import FastEnum
+from dataclasses import dataclass
+from enum import Enum
+from typing import ClassVar, Iterable, Iterator, Union
 
-from ..enum import Action, Score
-from .abstract import AbstractAction
+from ..configuration import REQUEST_VOTE_MAX_COUNT
+from ..entity.main import Book
+from ..entity.root import UpdateRoot
+from ..enum import Action, ElementPrefix, Score
+from .abstract_by_chunk import AbstractActionByChunk
 
 
-class Parameter(metaclass=FastEnum):
-    SCORE = "score"
+@dataclass
+class Vote(AbstractActionByChunk):
+    class Parameter(Enum):
+        SCORE = "score"  # Score
 
+    _ACTION: ClassVar[Action] = Action.VOTE
+    _CHUNK_SIZE: ClassVar[int] = REQUEST_VOTE_MAX_COUNT
 
-class Vote(AbstractAction):
-    def __init__(self, score: str):
-        super().__init__(Action.VOTE)
-        self.score = Score[score]
+    score: Score
 
+    def __init__(self, ids: Iterable[int], score: Score):
+        self.score = score
+        super().__init__(UpdateRoot, ids)
+
+    @classmethod
     @property
-    def params(self):
-        params = super().params
-        params[Parameter.SCORE.value] = self.score.value
-        return params
+    def ACTION(cls) -> Action:
+        return cls._ACTION
+
+    @classmethod
+    @property
+    def CHUNK_SIZE(self) -> int:
+        return self._CHUNK_SIZE
+
+    @classmethod
+    @property
+    def PREFIX(cls) -> ElementPrefix:
+        return Book.PREFIX
+
+    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+        yield from super().params()
+        yield self.Parameter.SCORE.value, self.score.value

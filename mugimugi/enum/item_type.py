@@ -1,16 +1,15 @@
-from fast_enum import FastEnum
+from enum import Enum
 
 
-class ItemType(metaclass=FastEnum):
-    AUTHOR = "A"
-    BOOK = "B"
-    CIRCLE = "C"
-    GENRE = "G"
-    CHARACTER = "H"
-    IMPRINT = "I"
-    CONTENTS = "K"
-    PUBLISHER = "L"
-    CONVENTION = "N"
-    COLLECTIONS = "O"
-    PARODY = "P"
-    TYPE = "T"
+class ItemType(Enum):
+    AUTHOR = "author"
+    CIRCLE = "circle"
+    CHARACTER = "character"
+    COLLECTION = "collections"
+    CONTENT = "contents"
+    CONVENTION = "convention"
+    GENRE = "genre"
+    IMPRINT = "imprint"
+    PARODY = "parody"
+    PUBLISHER = "publisher"
+    TYPE = "type"

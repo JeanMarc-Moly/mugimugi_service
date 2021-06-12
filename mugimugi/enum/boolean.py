@@ -1,8 +1,6 @@
-from __future__ import annotations
-
-from fast_enum import FastEnum
+from enum import IntEnum
 
 
-class Boolean(metaclass=FastEnum):
+class Boolean(IntEnum):
     TRUE = 1
     FALSE = 0

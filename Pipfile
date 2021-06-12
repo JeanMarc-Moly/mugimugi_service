@@ -1,0 +1,32 @@
+[[source]]
+url = 'https://pypi.python.org/simple'
+verify_ssl = true
+name = 'pypi'
+
+[requires]
+python_version = '3.9.5'
+
+[packages]
+httpx = "*"
+multimethod = "*"
+xsdata = "*"
+
+[pipenv]
+allow_prereleases = true
+
+[dev-packages]
+ipython = "*"
+pylint = "*"
+black = "*"
+isort = "*"
+mypy = "*"
+pipenv-setup = "*"
+python-dotenv = "*"
+loguru = "*"
+ipykernel = "*"
+
+[scripts]
+install_dev = 'bash script/install_dev.sh'
+format = 'bash script/format.sh'
+upgrade = 'bash script/upgrade.sh'
+test = 'python -m unittest discover test'

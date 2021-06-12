@@ -1,7 +1,7 @@
-from fast_enum import FastEnum
+from enum import IntEnum
 
 
-class Language(metaclass=FastEnum):
+class Language(IntEnum):
     UNKNOWN = 1
     ENGLISH = 2
     JAPANESE = 3

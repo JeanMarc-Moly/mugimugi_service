@@ -1,8 +1,6 @@
-from __future__ import annotations
-
-from fast_enum import FastEnum
+from enum import Enum
 
 
-class YesNo(metaclass=FastEnum):
+class YesNo(Enum):
     YES = "Y"
     NO = "N"

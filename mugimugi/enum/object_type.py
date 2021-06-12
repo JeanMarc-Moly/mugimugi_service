@@ -1,9 +1,7 @@
-from __future__ import annotations
-
-from fast_enum import FastEnum
+from enum import IntEnum
 
 
-class ObjectType(metaclass=FastEnum):
+class ObjectType(IntEnum):
     DOUJINSHI = 1
     DOUJIN_CG = 2
     DOUJIN_SOFT = 3

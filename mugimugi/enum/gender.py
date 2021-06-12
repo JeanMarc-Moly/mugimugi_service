@@ -1,7 +1,7 @@
-from fast_enum import FastEnum
+from enum import IntEnum
 
 
-class Gender(metaclass=FastEnum):
+class Sex(IntEnum):
     UNKNOWN = 0
     MALE = 1
     FEMALE = 2

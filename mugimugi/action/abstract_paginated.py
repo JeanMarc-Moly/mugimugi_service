@@ -1,26 +1,48 @@
-from abc import abstractstaticmethod
-from fast_enum import FastEnum
+from abc import ABC
+from enum import Enum
+from typing import Iterator, Optional, Union
 
-from .abstract import AbstractAction
-
-
-class Parameter(metaclass=FastEnum):
-    PAGE = "page"  # int > 0
+from ..configuration import PARALLEL_PAGES_COUNT, RESPONSE_MAX_COUNT
+from .abstract import AbstractAction, AsyncClient
 
 
-class AbstractPaginatedAction(AbstractAction):
-    page: int
+class AbstractPaginatedAction(AbstractAction, ABC):
+    class Parameter(Enum):
+        PAGE = "page"  # int > 0
 
-    def __init__(self, page: int) -> None:
-        if page:
-            page = int(page)
-        if not page or page < 1:
-            page = 1
-        self.page = page
+    PAGES: int = PARALLEL_PAGES_COUNT
+
+    page: Optional[int] = None
 
     @property
-    def params(self):
-        params = super().params
-        params[Parameter.PAGE.value] = self.page
-        return params 
-        
+    def page_size(self) -> int:
+        return RESPONSE_MAX_COUNT
+
+    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+        yield from super().params()
+        yield AbstractPaginatedAction.Parameter.PAGE.value, self.page
+
+    async def query_elements_fast(self, client: AsyncClient):
+        current, swap = 0, self.page
+
+        while True:
+            self.page = current = current + 1
+            query = self.get_query(client)
+            self.page = swap
+
+            result = self.send_and_parse(query)
+            yield result
+
+    async def query_elements(self, client: AsyncClient):
+        current, swap = 0, self.page
+        count = max_ = self.page_size
+
+        while count == max_:
+            self.page = current = current + 1
+            result = self.send_and_parse(client, self.get_query(client))
+            self.page = swap
+
+            result = (await result).elements
+            for e in result:
+                yield e
+            count = len(result)

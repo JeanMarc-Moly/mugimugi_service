@@ -1,28 +1,40 @@
-from typing import Iterable, Union
+from __future__ import annotations
 
-from fast_enum import FastEnum
+from abc import ABC
+from dataclasses import dataclass
+from enum import Enum
+from typing import ClassVar, Iterable, Iterator, TypeVar, Union
 
-from ..enum import ItemType
+from ..configuration import REQUEST_EDIT_LIST_MAX_COUNT
+from ..enum import ElementNode
 from .abstract import AbstractAction
 
-
-class Parameter(metaclass=FastEnum):
-    ID = "ID"
+T = TypeVar("T", bound="AbstractUserListAction")
 
 
-class AbstractUserListAction(AbstractAction):
-    CONTENT_SEPARATOR = ","
-    # Beyond this count, books are ignoerd.
-    MAX_COUNT_OF_BOOK = 25
-    BOOK_ID_PREFIX = ItemType.BOOK.value
+@dataclass
+class AbstractUserListAction(AbstractAction, ABC):
+    class Parameter(Enum):
+        ID = "ID"
 
-    def __init__(self, books: Iterable[Union[str, int]], split_list=False):
+    CONTENT_SEPARATOR: ClassVar[str] = ","
+    BOOK_ID_PREFIX: ClassVar[str] = ElementNode.BOOK.value
+    # Beyond this count, books are ignored.
+    MAX_COUNT_OF_BOOK = REQUEST_EDIT_LIST_MAX_COUNT
+
+    books: set[int]
+
+    def __init__(self, books: Iterable[int]):
+        self.books = set(books)
+
+    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+        yield from super().params()
+
         p = self.BOOK_ID_PREFIX
-        self.books = {b if b.startswith(p) else p + b for b in (str(b) for b in books)}
-        self.split_list = split_list
+        yield self.Parameter.ID.value, self.CONTENT_SEPARATOR.join(
+            p + str(b) for b in self.books
+        )
 
-    @property
-    def params(self):
-        params = super().params
-        params[Parameter.ID.value] = self.CONTENT_SEPARATOR.join(self.books)
-        return params
+    @classmethod
+    def get_from_typed_id(cls: T, books: Iterable[str]) -> T:
+        return cls.__init__(int(b[1:]) for b in books)

@@ -1,9 +1,7 @@
-from __future__ import annotations
-
-from fast_enum import FastEnum
+from enum import IntEnum
 
 
-class Match(metaclass=FastEnum):
+class Match(IntEnum):
     ANY = 0
     EXACT = 3
     ENDS_WITH = 2

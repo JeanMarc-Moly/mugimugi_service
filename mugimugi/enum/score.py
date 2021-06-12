@@ -1,9 +1,7 @@
-from __future__ import annotations
-
-from fast_enum import FastEnum
+from enum import IntEnum
 
 
-class Score(FastEnum):
+class Score(IntEnum):
     BAD = 1
     OK = 2
     GOOD = 3
