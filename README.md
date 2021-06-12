@@ -62,7 +62,7 @@ Mugimugi (doujinshi.org) api client
 |circle    |×|×|
 |collection| | |
 |content   | | |
-|convention|×| |
+|convention|×|×|
 |genre     | | |
 |image     | | |
 |imprint   | | |
