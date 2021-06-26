@@ -31,6 +31,7 @@ setup(
         "httpcore==0.13.6; python_version >= '3.6'",
         "httpx==0.18.2; python_version >= '3.6'",
         "idna==3.2",
+        "lxml==4.6.3; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
         "multimethod==1.5",
         "rfc3986[idna2008]==1.5.0",
         "sniffio==1.2.0; python_version >= '3.5'",
@@ -104,7 +105,7 @@ setup(
         ]
     },
     dependency_links=[
-        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api.git@200e49a25537b8d2dd2373b6e3db44c4fe866a5e#egg=mugimugi-client-api",
-        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git@7a52d7a7affd2c5c51e34c12a45fa943376c099e#egg=mugimugi-client-api-entity",
+        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api.git@cdf4b3964e65b0edb51fa7b0e6f97251f34047c1#egg=mugimugi-client-api",
+        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git@fe4a6f1e1a3d17c573e9538ebec6dbdbc4210d74#egg=mugimugi-client-api-entity",
     ],
 )
