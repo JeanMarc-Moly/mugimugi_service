@@ -1,73 +1,93 @@
 Mugimugi (doujinshi.org) api client
 
 # How to use
+
+## Get authors by ID
 ```python
 from mugimugi_client_api import MugiMugi
 async with MugiMugi(MUGIMUGI_API_KEY) as c:
-    a = await c.author.get(924)
-a
+    print(await c.author.get(924))
 ```
 ```python
 Author(
-    mugimugi_id='A924',
-    id=924,
-    prefix=<ElementPrefix.AUTHOR: 'A'>,
     english_name='Nakajima Yuka',
     japanese_name='なかじまゆか',
-    romaji_name='ナカジマユカ',
+    katakana_name='ナカジマユカ',
     other_names=['かなじまゆか', 'Digital Lover'],
-    _type=<Type.TYPE: <ItemType.AUTHOR: 'author'>>,
-    type=<ItemType.AUTHOR: 'author'>,
     version=15,
     objects_count=490,
     parent=0,
+    _id='A924',
+    _type=<Type.TYPE: <ItemType.AUTHOR: 'author'>>,
     _links=Author.Linker(items=[
         SubContent(
-            mugimugi_id='K121',
-            id=121,
-            prefix=<ElementPrefix.CONTENT: 'K'>,
             english_name='Stockings',
             japanese_name='ストッキング',
-            romaji_name='',
+            katakana_name='',
             other_names=[],
-            _type=<Type.TYPE: <ItemType.CONTENT: 'contents'>>,
-            type=<ItemType.CONTENT: 'contents'>,
             version=1,
             objects_count=29604
+            _id='K121',
+            _type=<Type.TYPE: <ItemType.CONTENT: 'contents'>>,
         ),
         SubContent(
-            mugimugi_id='K15',
-            id=15,
-            prefix=<ElementPrefix.CONTENT: 'K'>,
             english_name='Loli',
             japanese_name='ロリ',
-            romaji_name='',
+            katakana_name='',
             other_names=['lolicon', 'lolikon', 'rorikon', 'ロリコン'],
-            _type=<Type.TYPE: <ItemType.CONTENT: 'contents'>>,
-            type=<ItemType.CONTENT: 'contents'>,
             version=3,
             objects_count=75482
+            _id='K15',
+            _type=<Type.TYPE: <ItemType.CONTENT: 'contents'>>,
         )
     ])
 )
 ```
 
+## Get characters by ID
+```python
+from mugimugi_service import MugiMugi
+async with MugiMugi(MUGIMUGI_API_KEY) as c:
+    async for char in c.character.get(list(range(10))):
+        print(list(char.names))
+```
+```python
+['不詳', '(unknown)']
+['ヴィータ', 'ヴィータ', 'Vita']
+['フェイト・テスタロッサ', 'フェイトテスタロッサ', 'Fate Testarossa', 'フェイト・T・ハラオウン', 'Fate T. Harlaown']
+['高町なのは', 'タカマチナノハ', 'Takamachi Nanoha']
+['八神はやて', 'ヤガミハヤテ', 'Yagami Hayate']
+['九重りん', 'ココノエリン', 'Kokonoe Rin']
+['鏡黒', 'カガミクロ', 'Kagami Kuro']
+['宇佐美々', 'ウサミミ', 'Usa Mimi']
+['クー', 'クー', 'Kooh']
+```
+
+## Search convention by date
+```python
+from mugimugi_service import MugiMugi
+async with MugiMugi(MUGIMUGI_API_KEY) as c:
+    async for cv in c.convention.search(date_=date(2018,12,31)):
+        print(list(cv.names))
+```
+```python
+['コミックマーケット95', 'コミックマーケット95', 'Comic Market 95', 'C95', 'Comiket 95', 'Komike 95', 'コミケ95', 'コミケット95']
+```
+
+
 # Progress
 
-|object|get|search|vote|
-|-|-|-|-|
-|author    |✓|✓|-|
-|book      |✓|✓|✓|
-|character |✓|✓|-|
-|circle    |✓|✓|-|
-|collection|✗|✗|-|
-|content   |✗|✗|-|
-|convention|✓|✓|-|
-|genre     |✗|✗|-|
-|image     |✗|✗|-|
-|imprint   |✗|✗|-|
-|parody    |✓|✓|-|
-|favorite  |✗|✗|-|
-|publisher |✗|✗|-|
-|type      |✗|✗|-|
-|user      |✓|-|-|
+|object|get|search|vote|cover|search(image)|
+|-|-|-|-|-|-|
+|author    |✓|✓|-|-|-|
+|book      |✓|✓|✓|✗|✗|
+|character |✓|✓|-|-|-|
+|circle    |✓|✓|-|-|-|
+|collection|✓|✓|-|-|-|
+|content   |✓|✓|-|-|-|
+|convention|✓|✓|-|-|-|
+|genre     |✓|✓|-|-|-|
+|imprint   |✓|✓|-|-|-|
+|parody    |✓|✓|-|-|-|
+|publisher |✓|✓|-|-|-|
+|user      |✓|-|-|-|-|
