@@ -1,9 +1,10 @@
 from datetime import date
 from typing import Iterable, Iterator, Optional
 
-from ..action import GetConventionById, SearchConvention, SearchItem
-from ..entity.main import Convention as Entity
-from ..enum import SortOrder
+from mugimugi_client_api import GetConventionById, SearchConvention, SearchItem
+from mugimugi_client_api.enum import SortOrder
+from mugimugi_client_api_entity import Convention as Entity
+
 from .abstract_item import Item
 
 

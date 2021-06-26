@@ -1,8 +1,9 @@
 from typing import Iterable, Optional
 
-from ..action import GetPublisherById, SearchPublisher
-from ..entity.main import Publisher as Entity
-from ..enum import SortOrder
+from mugimugi_client_api import GetPublisherById, SearchPublisher
+from mugimugi_client_api.enum import SortOrder
+from mugimugi_client_api_entity import Publisher as Entity
+
 from .abstract_item import Item
 
 

@@ -1,8 +1,9 @@
 from typing import Iterable, Optional
 
-from ..action import GetCharacterById, SearchCharacter
-from ..entity.main import Character as Entity
-from ..enum import SortOrder
+from mugimugi_client_api import GetCharacterById, SearchCharacter
+from mugimugi_client_api.enum import SortOrder
+from mugimugi_client_api_entity import Character as Entity
+
 from .abstract_item import Item
 
 

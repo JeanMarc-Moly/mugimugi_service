@@ -1,15 +1,16 @@
 from typing import Iterable, Optional
 
-from ..action import GetParodyById, SearchParody
-from ..entity.main import Parody as Entity
-from ..enum import SortOrder
+from mugimugi_client_api import GetContentById, SearchContent
+from mugimugi_client_api.enum import SortOrder
+from mugimugi_client_api_entity import Content as Entity
+
 from .abstract_item import Item
 
 
-class Parody(Item[Entity]):
+class Content(Item[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetParodyById:
-        return GetParodyById(ids)
+    def _get(self, ids: Iterable[int]) -> GetContentById:
+        return GetContentById(ids)
 
     @classmethod
     def _search(
@@ -17,10 +18,10 @@ class Parody(Item[Entity]):
         title: Optional[str] = None,
         *,
         contributor: Optional[str] = None,
-        sort_criterion: Optional[SearchParody.SortCriterion] = None,
+        sort_criterion: Optional[SearchContent.SortCriterion] = None,
         sort_order: Optional[SortOrder] = None,
-    ) -> SearchParody:
-        return SearchParody(
+    ) -> SearchContent:
+        return SearchContent(
             title=title,
             contributor=contributor,
             sort_criterion=sort_criterion,

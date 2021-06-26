@@ -1,15 +1,16 @@
 from typing import Iterable, Optional
 
-from ..action import GetImprintById, SearchImprint
-from ..entity.main import Imprint as Entity
-from ..enum import SortOrder
+from mugimugi_client_api import GetAuthorById, SearchAuthor
+from mugimugi_client_api.enum import SortOrder
+from mugimugi_client_api_entity import Author as Entity
+
 from .abstract_item import Item
 
 
-class Imprint(Item[Entity]):
+class Author(Item[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetImprintById:
-        return GetImprintById(ids)
+    def _get(self, ids: Iterable[int]) -> GetAuthorById:
+        return GetAuthorById(ids)
 
     @classmethod
     def _search(
@@ -17,10 +18,10 @@ class Imprint(Item[Entity]):
         title: Optional[str] = None,
         *,
         contributor: Optional[str] = None,
-        sort_criterion: Optional[SearchImprint.SortCriterion] = None,
+        sort_criterion: Optional[SearchAuthor.SortCriterion] = None,
         sort_order: Optional[SortOrder] = None,
-    ) -> SearchImprint:
-        return SearchImprint(
+    ) -> SearchAuthor:
+        return SearchAuthor(
             title=title,
             contributor=contributor,
             sort_criterion=sort_criterion,

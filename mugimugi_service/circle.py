@@ -1,15 +1,16 @@
 from typing import Iterable, Optional
 
-from ..action import GetGenreById, SearchGenre
-from ..entity.main import Genre as Entity
-from ..enum import SortOrder
+from mugimugi_client_api import GetCircleById, SearchCircle
+from mugimugi_client_api.enum import SortOrder
+from mugimugi_client_api_entity import Circle as Entity
+
 from .abstract_item import Item
 
 
-class Genre(Item[Entity]):
+class Circle(Item[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetGenreById:
-        return GetGenreById(ids)
+    def _get(self, ids: Iterable[int]) -> GetCircleById:
+        return GetCircleById(ids)
 
     @classmethod
     def _search(
@@ -17,10 +18,10 @@ class Genre(Item[Entity]):
         title: Optional[str] = None,
         *,
         contributor: Optional[str] = None,
-        sort_criterion: Optional[SearchGenre.SortCriterion] = None,
+        sort_criterion: Optional[SearchCircle.SortCriterion] = None,
         sort_order: Optional[SortOrder] = None,
-    ) -> SearchGenre:
-        return SearchGenre(
+    ) -> SearchCircle:
+        return SearchCircle(
             title=title,
             contributor=contributor,
             sort_criterion=sort_criterion,

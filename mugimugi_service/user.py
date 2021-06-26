@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import Callable
 
-from ..entity.main import User as Entity
-from ..entity.root import EmptyRoot
+from mugimugi_client_api_entity import User as Entity
+from mugimugi_client_api_entity.root import EmptyRoot
 
 
 @dataclass

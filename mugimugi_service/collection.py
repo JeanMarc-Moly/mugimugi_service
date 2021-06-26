@@ -1,8 +1,9 @@
 from typing import Iterable, Optional
 
-from ..action import GetCollectionById, SearchCollection
-from ..entity.main import Collection as Entity
-from ..enum import SortOrder
+from mugimugi_client_api import GetCollectionById, SearchCollection
+from mugimugi_client_api.enum import SortOrder
+from mugimugi_client_api_entity import Collection as Entity
+
 from .abstract_item import Item
 
 

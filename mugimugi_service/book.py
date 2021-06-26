@@ -2,10 +2,11 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Iterable, Iterator, Optional
 
-from ..action import GetBookById, SearchObject, Vote
-from ..entity.main import Book as Entity
-from ..entity.root import UpdateRoot
-from ..enum import ObjectType, Score, SortOrder, YesNo
+from mugimugi_client_api import GetBookById, SearchObject, Vote
+from mugimugi_client_api.enum import ObjectType, Score, SortOrder, YesNo
+from mugimugi_client_api_entity import Book as Entity
+from mugimugi_client_api_entity.root import UpdateRoot
+
 from .abstract import AbstractService
 from .abstract_getter import Getter
 

@@ -2,8 +2,9 @@ from abc import abstractmethod
 from dataclasses import dataclass
 from typing import Generic, Iterator, Optional, TypeVar
 
-from ..action import SearchItem
-from ..enum import SortOrder
+from mugimugi_client_api import SearchItem
+from mugimugi_client_api.enum import SortOrder
+
 from .abstract import AbstractService
 from .abstract_getter import EI, Getter
 
