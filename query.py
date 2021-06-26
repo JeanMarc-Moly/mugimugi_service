@@ -1,6 +1,6 @@
 from os import getenv
 from dotenv import load_dotenv
-from mugimugi import MugiMugi
+from mugimugi_service import MugiMugi
 
 
 load_dotenv()
