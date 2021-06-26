@@ -1,20 +1,19 @@
 from dataclasses import dataclass
 from datetime import date
-from typing import Iterable, Iterator, Optional
+from typing import AsyncGenerator, Iterable, Optional
 
 from mugimugi_client_api import GetBookById, SearchObject, Vote
 from mugimugi_client_api.enum import ObjectType, Score, SortOrder, YesNo
 from mugimugi_client_api_entity import Book as Entity
 from mugimugi_client_api_entity.root import UpdateRoot
 
-from .abstract import AbstractService
 from .abstract_getter import Getter
 
 
 @dataclass
-class Book(AbstractService, Getter[Entity]):
+class Book(Getter[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetBookById:
+    def _get(cls, ids: Iterable[int]) -> GetBookById:
         return GetBookById(ids)
 
     async def search(
@@ -43,8 +42,8 @@ class Book(AbstractService, Getter[Entity]):
         submitter: Optional[str] = None,
         sort_criterion: Optional[SearchObject.SortCriterion] = None,
         sort_order: Optional[SortOrder] = None,
-        limit: Optional[int] = 0,
-    ) -> Iterator[Entity]:
+        limit: int = 0,
+    ) -> AsyncGenerator[Entity, None]:
         query = SearchObject(
             title=title,
             is_adult_only=is_adult_only,
@@ -81,7 +80,6 @@ class Book(AbstractService, Getter[Entity]):
             InvalidScore:  TODO: add log for this one, should not be possible here
             ObjectNotFound:
         """
-        # can't use 'all' TT
         async for b in Vote(ids, score).query_bulk_fast(self._api):
             if not b.is_ok:
                 return False

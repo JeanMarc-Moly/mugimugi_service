@@ -9,12 +9,12 @@ from .abstract_item import Item
 
 class Content(Item[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetContentById:
+    def _get(cls, ids: Iterable[int]) -> GetContentById:
         return GetContentById(ids)
 
     @classmethod
     def _search(
-        self,
+        cls,
         title: Optional[str] = None,
         *,
         contributor: Optional[str] = None,

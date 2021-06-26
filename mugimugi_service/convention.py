@@ -1,16 +1,16 @@
 from datetime import date
-from typing import Iterable, Iterator, Optional
+from typing import AsyncGenerator, Iterable, Optional
 
 from mugimugi_client_api import GetConventionById, SearchConvention, SearchItem
 from mugimugi_client_api.enum import SortOrder
 from mugimugi_client_api_entity import Convention as Entity
 
-from .abstract_item import Item
+from .abstract_getter import Getter
 
 
-class Convention(Item[Entity]):
+class Convention(Getter[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetConventionById:
+    def _get(cls, ids: Iterable[int]) -> GetConventionById:
         return GetConventionById(ids)
 
     async def search(
@@ -21,8 +21,8 @@ class Convention(Item[Entity]):
         contributor: Optional[str] = None,
         sort_criterion: Optional[SearchItem.SortCriterion] = None,
         sort_order: Optional[SortOrder] = None,
-        limit: Optional[int] = 0,
-    ) -> Iterator[Entity]:
+        limit: int = 0,
+    ) -> AsyncGenerator[Entity, None]:
         query = SearchConvention(
             title=title,
             date_=date_,

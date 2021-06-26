@@ -9,12 +9,12 @@ from .abstract_item import Item
 
 class Author(Item[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetAuthorById:
+    def _get(cls, ids: Iterable[int]) -> GetAuthorById:
         return GetAuthorById(ids)
 
     @classmethod
     def _search(
-        self,
+        cls,
         title: Optional[str] = None,
         *,
         contributor: Optional[str] = None,

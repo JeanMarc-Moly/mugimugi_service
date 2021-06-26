@@ -1,16 +1,13 @@
 from abc import abstractmethod
-from dataclasses import dataclass
-from typing import Generic, Iterator, Optional, TypeVar
+from typing import AsyncGenerator, Generic, Optional
 
 from mugimugi_client_api import SearchItem
 from mugimugi_client_api.enum import SortOrder
 
-from .abstract import AbstractService
 from .abstract_getter import EI, Getter
 
 
-@dataclass
-class Item(Generic[EI], AbstractService, Getter[EI]):
+class Item(Generic[EI], Getter[EI]):
     async def search(
         self,
         title: Optional[str] = None,
@@ -18,15 +15,15 @@ class Item(Generic[EI], AbstractService, Getter[EI]):
         contributor: Optional[str] = None,
         sort_criterion: Optional[SearchItem.SortCriterion] = None,
         sort_order: Optional[SortOrder] = None,
-        limit: Optional[int] = 0,
-    ) -> Iterator[EI]:
+        limit: int = 0,
+    ) -> AsyncGenerator[EI, None]:
         query = self._search(
             title,
             contributor=contributor,
             sort_criterion=sort_criterion,
             sort_order=sort_order,
-        ).query_elements
-        async for element in query(self._api):
+        ).query_elements(self._api)
+        async for element in query:
             yield element
             if not (limit := limit - 1):
                 return
@@ -43,11 +40,11 @@ class Item(Generic[EI], AbstractService, Getter[EI]):
     @classmethod
     @abstractmethod
     def _search(
-        self,
+        cls,
         title: Optional[str] = None,
         *,
         contributor: Optional[str] = None,
         sort_criterion: Optional[SearchItem.SortCriterion] = None,
         sort_order: Optional[SortOrder] = None,
-    ) -> TypeVar("AbstractSearchItem", bound=SearchItem):
+    ) -> SearchItem:
         ...

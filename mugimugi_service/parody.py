@@ -9,12 +9,12 @@ from .abstract_item import Item
 
 class Parody(Item[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetParodyById:
+    def _get(cls, ids: Iterable[int]) -> GetParodyById:
         return GetParodyById(ids)
 
     @classmethod
     def _search(
-        self,
+        cls,
         title: Optional[str] = None,
         *,
         contributor: Optional[str] = None,

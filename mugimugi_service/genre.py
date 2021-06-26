@@ -9,12 +9,12 @@ from .abstract_item import Item
 
 class Genre(Item[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetGenreById:
+    def _get(cls, ids: Iterable[int]) -> GetGenreById:
         return GetGenreById(ids)
 
     @classmethod
     def _search(
-        self,
+        cls,
         title: Optional[str] = None,
         *,
         contributor: Optional[str] = None,

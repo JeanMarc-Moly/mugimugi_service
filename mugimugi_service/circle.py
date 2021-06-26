@@ -9,12 +9,12 @@ from .abstract_item import Item
 
 class Circle(Item[Entity]):
     @classmethod
-    def _get(self, ids: Iterable[int]) -> GetCircleById:
+    def _get(cls, ids: Iterable[int]) -> GetCircleById:
         return GetCircleById(ids)
 
     @classmethod
     def _search(
-        self,
+        cls,
         title: Optional[str] = None,
         *,
         contributor: Optional[str] = None,
