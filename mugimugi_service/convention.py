@@ -30,7 +30,8 @@ class Convention(Getter[Entity]):
             sort_criterion=sort_criterion,
             sort_order=sort_order,
         ).query_elements
-        async for element in query(self._api):
-            yield element
-            if not (limit := limit - 1):
-                return
+        async with self._api.data as a:
+            async for element in query(a):
+                yield element
+                if not (limit := limit - 1):
+                    return

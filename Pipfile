@@ -8,8 +8,9 @@ python_version = '3.9.5'
 
 [packages]
 multimethod = "*"
-mugimugi_client_api = { git = "https://github.com/JeanMarc-Moly/mugimugi_client_api.git" }
-mugimugi_client_api_entity = { git = "https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git" }
+mugimugi_client_api = { git = "https://github.com/JeanMarc-Moly/mugimugi_client_api.git", ref = "main" }
+mugimugi_client_api_entity = { git = "https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git", ref = "main" }
+mugimugi_client_image = { git = "https://github.com/JeanMarc-Moly/mugimugi_client_image.git", ref = "main" }
 
 [pipenv]
 allow_prereleases = true

@@ -1,14 +1,10 @@
-from dataclasses import dataclass
-from typing import Callable
-
 from mugimugi_client_api_entity import User as Entity
 from mugimugi_client_api_entity.root import EmptyRoot
 
+from .abstract import AbstractService
 
-@dataclass
-class User:
-    _api: Callable
-    # web: Callable
 
+class User(AbstractService):
     async def get(self) -> Entity:
-        return EmptyRoot.parse(await self._api({})).user
+        async with self._api.data as c:
+            return EmptyRoot.parse((await c.get("")).text)

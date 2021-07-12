@@ -1,7 +1,8 @@
 from dataclasses import dataclass
-from typing import Callable
+
+from .api import API
 
 
 @dataclass
 class AbstractService:
-    _api: Callable
+    _api: API

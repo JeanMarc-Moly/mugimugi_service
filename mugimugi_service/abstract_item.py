@@ -17,16 +17,17 @@ class Item(Generic[EI], Getter[EI]):
         sort_order: Optional[SortOrder] = None,
         limit: int = 0,
     ) -> AsyncGenerator[EI, None]:
-        query = self._search(
-            title,
-            contributor=contributor,
-            sort_criterion=sort_criterion,
-            sort_order=sort_order,
-        ).query_elements(self._api)
-        async for element in query:
-            yield element
-            if not (limit := limit - 1):
-                return
+        async with self._api.data as a:
+            query = self._search(
+                title,
+                contributor=contributor,
+                sort_criterion=sort_criterion,
+                sort_order=sort_order,
+            ).query_elements(a)
+            async for element in query:
+                yield element
+                if not (limit := limit - 1):
+                    return
 
     async def add(self, **kwargs) -> bool:
         raise Exception("Not Implemented")

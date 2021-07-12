@@ -1,7 +1,28 @@
-Mugimugi (doujinshi.org) api client
+Mugimugi (doujinshi.org) services client
 
 # How to use
 
+## Context
+It is possible not to use `MugiMugi` as context, but it is advised if you have many queries to make.
+
+Will work
+```python
+from mugimugi_client_api import MugiMugi
+print(await MugiMugi(MUGIMUGI_API_KEY).author.get(924))
+```
+when you got a lot
+```python
+from mugimugi_service import MugiMugi
+from datetime import date, timedelta
+
+# Get last hundred days worth of conventions.
+async with MugiMugi(MUGIMUGI_API_KEY) as c:
+    today = date.today()
+    for offset in range(100):
+        day = today - timedelta(days=offset)
+        async for cv in c.convention.search(date_=day):
+            print(list(cv.names))
+```
 ## Get authors by ID
 ```python
 from mugimugi_client_api import MugiMugi
@@ -74,13 +95,47 @@ async with MugiMugi(MUGIMUGI_API_KEY) as c:
 ['コミックマーケット95', 'コミックマーケット95', 'Comic Market 95', 'C95', 'Comiket 95', 'Komike 95', 'コミケ95', 'コミケット95']
 ```
 
+## Get books covers
+```python
+from mugimugi_service import MugiMugi
+MugiMugi(MUGIMUGI_API_KEY).book.get_cover(100)
+```
+Will return the raw bytes of the image.
+```python
+from mugimugi_service import MugiMugi
+from io import BytesIO
+from PIL.Image import open
+
+async for id_, raw in MugiMugi(MUGIMUGI_API_KEY).book.get_covers(range(10,15)):
+    open(BytesIO(raw)).save(f"{id_}.jpg")
+```
+Can be fed to pillow for modifications.
+## Save books covers
+```python
+from mugimugi_service import MugiMugi
+await MugiMugi(MUGIMUGI_API_KEY).book.save_cover(101, "test")
+```
+```python
+PosixPath('/dev/mugimugi/service/test.jpg')
+```
+```python
+covers = ((10, "the tenth"),(15, "15"))
+from mugimugi_service import MugiMugi
+async for id_, path in MugiMugi(MUGIMUGI_API_KEY).book.save_covers(covers):
+    print(f"{id_}: {path}")
+```
+```shell
+10: /dev/mugimugi/service/the tenth.jpg
+15: /dev/mugimugi/service/15.jpg
+```
+
 
 # Progress
 
 |object|get|search|vote|cover|search(image)|
 |-|-|-|-|-|-|
 |author    |✓|✓|-|-|-|
-|book      |✓|✓|✓|✗|✗|
+|book      |✓|✓|✓|✓|✗|
 |character |✓|✓|-|-|-|
 |circle    |✓|✓|-|-|-|
 |collection|✓|✓|-|-|-|
