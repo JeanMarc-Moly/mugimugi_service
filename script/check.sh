@@ -1,2 +1,2 @@
 #!/bin/sh
-python -m mypy $APP
+python -m mypy `cat PACKAGE`

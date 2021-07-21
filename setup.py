@@ -7,9 +7,11 @@ with (project / "README.md").open(encoding="utf-8") as f:
     long_description = f.read()
 with (project / "VERSION").open(encoding="utf-8") as f:
     version = f.read()
+with (project / "PACKAGE").open(encoding="utf-8") as f:
+    name = f.read().strip()
 
 setup(
-    name="mugimugi-service",
+    name=name,
     version=version,
     description="Mugimugi api client",
     long_description=long_description,
@@ -25,6 +27,11 @@ setup(
     keywords="development",
     packages=find_packages(exclude=["contrib", "docs", "tests"]),
     python_requires=">=3.9.*, <4",
+    dependency_links=[
+        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api.git@d566ce5e462108858d2b4960bbd968b8e77e2540#egg=mugimugi-client-api",
+        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git@57a10613921361b13bdeec6143f0fe5fd969916b#egg=mugimugi-client-api-entity",
+        "git+https://github.com/JeanMarc-Moly/mugimugi_client_image.git@c424268e1cfd3859cdb61debeb61dd237a40731a#egg=mugimugi-client-image",
+    ],
     install_requires=[
         "anyio==3.2.1; python_full_version >= '3.6.2'",
         "certifi==2021.5.30",
@@ -105,9 +112,4 @@ setup(
             "wrapt==1.12.1",
         ]
     },
-    dependency_links=[
-        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api.git@d566ce5e462108858d2b4960bbd968b8e77e2540#egg=mugimugi-client-api",
-        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git@57a10613921361b13bdeec6143f0fe5fd969916b#egg=mugimugi-client-api-entity",
-        "git+https://github.com/JeanMarc-Moly/mugimugi_client_image.git@c424268e1cfd3859cdb61debeb61dd237a40731a#egg=mugimugi-client-image",
-    ],
 )
