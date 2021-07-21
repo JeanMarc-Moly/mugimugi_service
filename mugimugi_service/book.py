@@ -6,14 +6,16 @@ from typing import (
     AsyncGenerator,
     AsyncIterable,
     AsyncIterator,
+    BinaryIO,
     Iterable,
     Optional,
     Union,
 )
 
-from mugimugi_client_api import GetBookById, SearchObject, Vote
+from mugimugi_client_api import GetBookById, SearchImage, SearchObject, Vote
 from mugimugi_client_api.enum import ObjectType, Score, SortOrder, YesNo
 from mugimugi_client_api_entity import Book as Entity
+from mugimugi_client_api_entity import MatchedBook
 from mugimugi_client_api_entity.root import UpdateRoot
 from mugimugi_client_image import Repository
 
@@ -95,6 +97,29 @@ class Book(Getter[Entity]):
                 yield element
                 if not (limit := limit - 1):
                     return
+
+    async def search_from_image(
+        self,
+        image: Union[str, Path, BinaryIO],
+        coloring: SearchImage.Coloring = SearchImage.Coloring.AUTO,
+    ) -> AsyncGenerator[MatchedBook, None]:
+        """
+            :raises:
+                ImageNotUploaded:
+        """
+        if isinstance(image, (str, Path)):
+            local = True
+            image = Path(image).open("rb")
+        else:
+            local = False
+
+        async with self._api.data as a:
+            request = SearchImage(image, coloring=coloring)
+            for e in (await request.query_one(a)).elements:
+                yield e
+
+        if local:
+            image.close()
 
     async def vote(self, score: Score, *ids: int) -> UpdateRoot.Update:
         """

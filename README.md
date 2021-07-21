@@ -128,6 +128,27 @@ async for id_, path in MugiMugi(MUGIMUGI_API_KEY).book.save_covers(covers):
 10: /dev/mugimugi/service/the tenth.jpg
 15: /dev/mugimugi/service/15.jpg
 ```
+## Search books by image
+```python
+from mugimugi_service import MugiMugi
+await MugiMugi(MUGIMUGI_API_KEY).book.search_from_image(101, "test")
+```
+```python
+PosixPath('/dev/mugimugi/service/test.jpg')
+```
+```python
+from mugimugi_service import MugiMugi
+
+cover = "/data/ero/manga/Ooyari Ashito/THE_PLEASURES OF PRINCESSES (48938)/cover.jpg"
+async for e in MugiMugi(MUGIMUGI_API_KEY).book.search_from_image(local=cover):
+    print(f"{e.match_ratio:2.2f}%: {next(e.names)}")
+```
+```shell
+84.77%: THE PLEASURES OF PRINCESSES
+21.82%: 黒猫妄想!
+20.67%: アニヨロ
+...
+```
 
 
 # Progress
@@ -135,7 +156,7 @@ async for id_, path in MugiMugi(MUGIMUGI_API_KEY).book.save_covers(covers):
 |object|get|search|vote|cover|search(image)|
 |-|-|-|-|-|-|
 |author    |✓|✓|-|-|-|
-|book      |✓|✓|✓|✓|✗|
+|book      |✓|✓|✓|✓|✓|
 |character |✓|✓|-|-|-|
 |circle    |✓|✓|-|-|-|
 |collection|✓|✓|-|-|-|
