@@ -4,12 +4,13 @@ verify_ssl = true
 name = 'pypi'
 
 [requires]
-python_version = '3.9.5'
+python_version = '3.9'
 
 [packages]
-httpx = "*"
 multimethod = "*"
-xsdata = "*"
+mugimugi_client_api = { git = "https://github.com/JeanMarc-Moly/mugimugi_client_api.git", ref = "main" }
+mugimugi_client_api_entity = { git = "https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git", ref = "main" }
+mugimugi_client_image = { git = "https://github.com/JeanMarc-Moly/mugimugi_client_image.git", ref = "main" }
 
 [pipenv]
 allow_prereleases = true
@@ -29,4 +30,6 @@ ipykernel = "*"
 install_dev = 'bash script/install_dev.sh'
 format = 'bash script/format.sh'
 upgrade = 'bash script/upgrade.sh'
+check = 'bash script/check.sh'
 test = 'python -m unittest discover test'
+bump = 'python script/bump_version.py'
