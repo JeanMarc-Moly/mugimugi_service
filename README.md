@@ -7,7 +7,7 @@ It is possible not to use `MugiMugi` as context, but it is advised if you have m
 
 Will work
 ```python
-from mugimugi_client_api import MugiMugi
+from mugimugi_service import MugiMugi
 print(await MugiMugi(MUGIMUGI_API_KEY).author.get(924))
 ```
 when you got a lot
@@ -25,7 +25,7 @@ async with MugiMugi(MUGIMUGI_API_KEY) as c:
 ```
 ## Get authors by ID
 ```python
-from mugimugi_client_api import MugiMugi
+from mugimugi_service import MugiMugi
 async with MugiMugi(MUGIMUGI_API_KEY) as c:
     print(await c.author.get(924))
 ```
@@ -153,17 +153,17 @@ async for e in MugiMugi(MUGIMUGI_API_KEY).book.search_from_image(local=cover):
 
 # Progress
 
-|object|get|search|vote|cover|search(image)|
-|-|-|-|-|-|-|
-|author    |✓|✓|-|-|-|
-|book      |✓|✓|✓|✓|✓|
-|character |✓|✓|-|-|-|
-|circle    |✓|✓|-|-|-|
-|collection|✓|✓|-|-|-|
-|content   |✓|✓|-|-|-|
-|convention|✓|✓|-|-|-|
-|genre     |✓|✓|-|-|-|
-|imprint   |✓|✓|-|-|-|
-|parody    |✓|✓|-|-|-|
-|publisher |✓|✓|-|-|-|
-|user      |✓|-|-|-|-|
+|object|get|search|vote|cover|search(image)|add|edit|delete|
+|-|-|-|-|-|-|-|-|-|
+|author    |✓|✓|-|-|-|✗|✗|✗|
+|book      |✓|✓|✓|✓|✓|✗|✗|✗|
+|character |✓|✓|-|-|-|✗|✗|✗|
+|circle    |✓|✓|-|-|-|✗|✗|✗|
+|collection|✓|✓|-|-|-|✗|✗|✗|
+|content   |✓|✓|-|-|-|✗|✗|✗|
+|convention|✓|✓|-|-|-|✗|✗|✗|
+|genre     |✓|✓|-|-|-|✗|✗|✗|
+|imprint   |✓|✓|-|-|-|✗|✗|✗|
+|parody    |✓|✓|-|-|-|✗|✗|✗|
+|publisher |✓|✓|-|-|-|✗|✗|✗|
+|user      |✓|-|-|-|-|-|-|-|
